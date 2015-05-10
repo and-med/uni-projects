@@ -1,0 +1,31 @@
+<html>
+	<body>
+	Hello, $page.Recepient.FirstName $page.Recepient.LastName!
+	Please buy our products...
+	
+	#if (($page.Recepient.FirstName =="Pavlo" && $page.Recepient.LastName.Length >= 5) || $page.Sender.GetProducts().Count > 1)
+		We know you are Pavlo,
+		And we know your address: "$page.Recepient.Address"
+		We like when Pavlo's buy our products,
+		We'll sell you everything for free
+	#end
+	#if  (6>5  )
+		Test1: This should print!
+	#end
+	#if(6 < 5)
+		Test2: This should not print!
+	#end
+	#if("Pavlo" =="Pavlo"  )
+		Test3: This should print!
+	#end
+	This should be as it is : $unexistingVariable
+	
+	And here are your products listed:
+	#foreach($product in $page.Recepient.GetProducts())
+		#if($product.Price > 1000) -Product named $product.Name costs $product.Price #end
+	#end
+	Thanks,
+	Sincerely yours
+		$page.Sender.FirstName $page.Sender.LastName
+	</body>
+<html>

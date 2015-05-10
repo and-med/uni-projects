@@ -1,0 +1,2 @@
+root=D:\Projects\C#\MyProjects\MacroEngine\FileParsing
+preloaded=MyMacro1.mv

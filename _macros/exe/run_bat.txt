@@ -1,0 +1,1 @@
+start "D:\_macros\exe\program.exe D:\_macros\json_conf\check1.json"

@@ -1,0 +1,9 @@
+D:\Projects\C#\MyProjects\MacroEngine\FileParsing\bin\Debug\FileParsing.exe.config
+D:\Projects\C#\MyProjects\MacroEngine\FileParsing\bin\Debug\FileParsing.exe
+D:\Projects\C#\MyProjects\MacroEngine\FileParsing\bin\Debug\FileParsing.pdb
+D:\Projects\C#\MyProjects\MacroEngine\FileParsing\obj\Debug\FileParsing.csprojResolveAssemblyReference.cache
+D:\Projects\C#\MyProjects\MacroEngine\FileParsing\obj\Debug\FileParsing.exe
+D:\Projects\C#\MyProjects\MacroEngine\FileParsing\obj\Debug\FileParsing.pdb
+D:\Projects\C#\MacroEngine\FileParsing\bin\Debug\FileParsing.exe.config
+D:\Projects\C#\MacroEngine\FileParsing\obj\Debug\FileParsing.exe
+D:\Projects\C#\MacroEngine\FileParsing\obj\Debug\FileParsing.pdb
