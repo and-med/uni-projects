@@ -56,39 +56,39 @@ namespace FileParsing
             firstArgRes = ParseUtilites.ParseArgument(firstArg, context);
             secondArgRes = ParseUtilites.ParseArgument(secondArg, context);
         }
-        private bool EvaluateConditionWithCharacter(Context context, string ch)
-        {
-            object firstArgRes;
-            object secondArgRes;
-            FillArgValues(context, ch, out firstArgRes, out secondArgRes);
-            switch (ch)
-            {
-                case "==":
-                    return firstArgRes.ToString() == secondArgRes.ToString();
-                case "!=":
-                    return firstArgRes.ToString() != secondArgRes.ToString();
-                case "<":
-                    if (firstArgRes is double && secondArgRes is double)
-                    {
-                        return ((double) firstArgRes).CompareTo((double) secondArgRes) < 0;
-                    }
-                    return ((int)firstArgRes).CompareTo((int)secondArgRes) < 0;
-                case ">":
-                    if (firstArgRes is double && secondArgRes is double)
-                    {
-                        return ((double) firstArgRes).CompareTo((double) secondArgRes) > 0;
-                    }
-                    return ((int)firstArgRes).CompareTo((int)secondArgRes) > 0;
-            }
-            return false;
-        }
+        //private bool EvaluateConditionWithCharacter(Context context, string ch)
+        //{
+        //    object firstArgRes;
+        //    object secondArgRes;
+        //    FillArgValues(context, ch, out firstArgRes, out secondArgRes);
+        //    switch (ch)
+        //    {
+        //        case "==":
+        //            return firstArgRes.ToString() == secondArgRes.ToString();
+        //        case "!=":
+        //            return firstArgRes.ToString() != secondArgRes.ToString();
+        //        case "<":
+        //            if (firstArgRes is double && secondArgRes is double)
+        //            {
+        //                return ((double) firstArgRes).CompareTo((double) secondArgRes) < 0;
+        //            }
+        //            return ((int)firstArgRes).CompareTo((int)secondArgRes) < 0;
+        //        case ">":
+        //            if (firstArgRes is double && secondArgRes is double)
+        //            {
+        //                return ((double) firstArgRes).CompareTo((double) secondArgRes) > 0;
+        //            }
+        //            return ((int)firstArgRes).CompareTo((int)secondArgRes) > 0;
+        //    }
+        //    return false;
+        //}
 
         private bool EvaluateConditionWithoutCharacters(Context context)
         {
             EmitRedundantCharacters();
             return ParseUtilites.ParseArgument(data, context) != null;
         }
-        public bool Evaluate(Context context)
+        public bool EvaluateConditionWithCharacter(Context context)
         {
             StringBuilder builder = new StringBuilder(data);
             List<string> valuesToReplace = new List<string>();
@@ -120,16 +120,16 @@ namespace FileParsing
             return bool.Parse(result.ToString());
         }
 
-        //public bool Evaluate(Context context)
-        //{
-        //    foreach (string allowed in AllowedCondCharacters)
-        //    {
-        //        if (data.Contains(allowed))
-        //        {
-        //            return EvaluateConditionWithCharacter(context, allowed);
-        //        }
-        //    }
-        //    return EvaluateConditionWithoutCharacters(context);
-        //}
+        public bool Evaluate(Context context)
+        {
+            foreach (string allowed in AllowedCondCharacters)
+            {
+                if (data.Contains(allowed))
+                {
+                    return EvaluateConditionWithCharacter(context);
+                }
+            }
+            return EvaluateConditionWithoutCharacters(context);
+        }
     }
 }

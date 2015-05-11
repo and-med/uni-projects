@@ -1,0 +1,38 @@
+﻿{
+    "configFile": "D:\\temp_path.txt",
+    "pages": [
+        {
+            "page": "page1.mv",
+            "outputPath": "D:\\temp_path.txt",
+            "recepient": {
+                "firstName": "Pavlo",
+                "lastName": "Halepa",
+                "email": "ph...@gmail.com",
+                "address": "Lviv, Franka st. 3",
+                "products": [
+                    {
+                        "name": "iphone5", 
+                        "price": 600,
+                        "dateOfPurchase": "23.03.2015" },
+                    {
+                        "name": "macbook air",
+                        "price": 1600,
+                        "dateOfPurchase": "28.04.2015" },
+                    {
+                        "name": "Some Stupid Thing", 
+                        "price": 5000,
+                        "dateOfPurchase": "10.10.2015" }
+                ]
+            },
+            "sender": {
+                "firstName": "Lee",
+                "lastName": "Engee",
+                "email": "sa...@ebay.com",
+                "address": "USA",
+                "products": [ ]
+            },
+            "params": [
+                { "Key": "logoUrl", "Value": "http..." }, 
+                { "Key": "counter", "Value": 25 } ]
+        }
+    ] }

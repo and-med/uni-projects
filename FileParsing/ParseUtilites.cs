@@ -6,6 +6,18 @@ namespace FileParsing
 {
     static class ParseUtilites
     {
+        public static void ParseConfigFile(string fileData, out string rootToFiles, out string[] preloaded)
+        {
+            int firstEqualityOperatorPos = fileData.IndexOf('=') + 1;
+            int secondEqualityOperatorPos = fileData.IndexOf('=', firstEqualityOperatorPos);
+            while (StaticData.CharactersToIgnore.Any(c => c == fileData[firstEqualityOperatorPos]))
+            {
+                firstEqualityOperatorPos++;
+            }
+            rootToFiles = fileData.Substring(firstEqualityOperatorPos, 
+                fileData.IndexOfAny(StaticData.CharactersToIgnore, firstEqualityOperatorPos) - firstEqualityOperatorPos);
+            preloaded = SplitCommaSeparated(fileData.Substring(secondEqualityOperatorPos + 1));
+        }
         public static string GetMacrosNameInPosition(string where, int macroSeparatorPos)
         {
             int index = @where.IndexOfAny(new[] {' ', '\t', '\n', '\r', '('}, macroSeparatorPos);
@@ -123,7 +135,12 @@ namespace FileParsing
             }
             else
             {
-                res = Int32.Parse(arg);
+                int tempRes;
+                if (Int32.TryParse(arg, out tempRes))
+                {
+                    return tempRes;
+                }
+                return null;
             }
             return res;
         }

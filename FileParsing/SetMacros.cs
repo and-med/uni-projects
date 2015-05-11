@@ -8,7 +8,7 @@ namespace FileParsing
 {
     class SetMacros:TextUnit
     {
-        public SetMacros(string data) : base(data)
+        public SetMacros(TextUnit father, string data) : base(father, data)
         {
             
         }

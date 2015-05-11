@@ -8,37 +8,45 @@ namespace FileParsing
         private List<ElseConstruction> ElseUnits; 
         private Condition Cond { get; set; }
         public bool Stop { get; set; }
-        public IfConstruction(string fileData, string condition):base(fileData)
+        public IfConstruction(TextUnit father, string fileData, string condition):base(father, fileData)
         {
             Cond = new Condition(condition);
             ElseUnits = new List<ElseConstruction>();
             Stop = true;
         }
-        public IfConstruction(string fileData):base(fileData)
+        public IfConstruction(TextUnit father, string fileData):base(father, fileData)
         {
             Stop = true;
         }
         public override string Evaluate(Context context)
         {
             StringBuilder result = new StringBuilder();
-            if (Cond.Evaluate(context))
+            try
             {
-                foreach (var unit in Units)
+                if (Cond.Evaluate(context))
                 {
-                    result.Append(unit.Evaluate(context));
-                }
-            }
-            else
-            {
-                foreach (var eUnit in ElseUnits)
-                {
-                    if (eUnit.GetResultOfCondition(context))
+                    foreach (var unit in Units)
                     {
-                        result.Append(eUnit.Evaluate(context));
-
-                        break;
+                        result.Append(unit.Evaluate(context));
                     }
                 }
+                else
+                {
+                    foreach (var eUnit in ElseUnits)
+                    {
+                        if (eUnit.GetResultOfCondition(context))
+                        {
+                            result.Append(eUnit.Evaluate(context));
+
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (BreakException ex)
+            {
+                ex.AddToResult(result.ToString());
+                throw;
             }
             return result.ToString();
         }

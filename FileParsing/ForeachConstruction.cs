@@ -9,7 +9,7 @@ namespace FileParsing
     {
         private string MacroData;
 
-        public ForeachConstruction(string fileData, string foreachData):base(fileData)
+        public ForeachConstruction(TextUnit father, string fileData, string foreachData):base(father, fileData)
         {
             MacroData = foreachData;
         }
@@ -45,15 +45,22 @@ namespace FileParsing
             SplitToVarAndContainer(out variableName, out containerName);
             IEnumerable container = (IEnumerable)context.GetValue(containerName);
             StringBuilder result = new StringBuilder();
-            foreach (var variable in container)
+            try
             {
-                context.AddNewValue(variableName, variable);
-                foreach (var unit in Units)
+                foreach (var variable in container)
                 {
-                    result.Append(unit.Evaluate(context));
+                    context.AddNewValue(variableName, variable);
+                    foreach (var unit in Units)
+                    {
+                        result.Append(unit.Evaluate(context));
+                    }
                 }
+                context.DeleteValue(variableName);
             }
-            context.DeleteValue(variableName);
+            catch (BreakException breakException)
+            {
+                result.Append(breakException.Result);
+            }
             return result.ToString();
         }
     }

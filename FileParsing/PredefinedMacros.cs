@@ -18,18 +18,19 @@ namespace FileParsing
                 {"#end", new PredefinedMacros("end", 0, false)},
                 {"#else", new PredefinedMacros("else",0,false)},
                 {"#elseif",new PredefinedMacros("elseif",1,false)},
-                {"#set",new PredefinedMacros("set",1,false)}
+                {"#set",new PredefinedMacros("set",1,false)},
+                {"#break", new PredefinedMacros("break", 0, false)}
             };
         }
 
-        public static TextUnit GetCompositePart(string macroName, string fileData, string macroData)
+        public static TextUnit GetCompositePart(TextUnit father, string macroName, string fileData, string macroData)
         {
             switch (macroName)
             {
                 case "#if":
-                    return new IfConstruction(fileData, macroData);
+                    return new IfConstruction(father, fileData, macroData);
                 case "#foreach":
-                    return new ForeachConstruction(fileData, macroData);
+                    return new ForeachConstruction(father, fileData, macroData);
                 case "#else":
                     return new ElseConstruction(fileData);
                 case "#elseif":

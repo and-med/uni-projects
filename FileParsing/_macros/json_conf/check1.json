@@ -12,12 +12,12 @@
         "products": [
           {
             "name": "iphone5",
-            "price": "600",
+            "price": 600,
             "dateOfPurchase": "23.03.2015"
           },
           {
             "name": "macbook air",
-            "price": "1600",
+            "price": 1600,
             "dateOfPurchase": "28.04.2015"
           }
         ]
@@ -30,16 +30,16 @@
       },
       "params": [
         {
-          "key": "adminEmail",
-          "value": "someAdmin@gmail.com"
+          "Key": "adminEmail",
+          "Value": "someAdmin@gmail.com"
         },
         {
-          "key": "numOfAttempts",
-          "value": 5
+          "Key": "numOfAttempts",
+          "Value": 5
         },
         {
-          "key": "adminName",
-          "value": "Mr Super Admin"
+          "Key": "adminName",
+          "Value": "Mr Super Admin"
         }
       ]
     }
