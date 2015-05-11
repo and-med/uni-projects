@@ -47,6 +47,8 @@
     <Compile Include="CompositeConstruction.cs" />
     <Compile Include="Condition.cs" />
     <Compile Include="Context.cs" />
+    <Compile Include="ElseConstruction.cs" />
+    <Compile Include="ElseIfConstruction.cs" />
     <Compile Include="ForeachConstruction.cs" />
     <Compile Include="CompositeView.cs" />
     <Compile Include="IfConstruction.cs" />
@@ -55,6 +57,7 @@
     <Compile Include="PagesInfo.cs" />
     <Compile Include="ParseUtilites.cs" />
     <Compile Include="PredefinedMacros.cs" />
+    <Compile Include="SetMacros.cs" />
     <Compile Include="StaticData.cs" />
     <Compile Include="StaticText.cs" />
     <Compile Include="TableOfMacros.cs" />

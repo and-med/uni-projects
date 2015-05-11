@@ -21,9 +21,9 @@ namespace FileParsing
             return result.ToString();
         }
 
-        public ElseConstruction()
+        public ElseConstruction(string FileData): base(FileData)
         {
-            FatherIfConstruction = new IfConstruction();
+            FatherIfConstruction = null;
         }
         public virtual bool GetResultOfCondition(Context cont)
         {

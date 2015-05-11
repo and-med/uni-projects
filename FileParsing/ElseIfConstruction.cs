@@ -11,7 +11,7 @@ namespace FileParsing
         private Condition Cond { get; set; }
         
 
-        public ElseIfConstruction(string cond)
+        public ElseIfConstruction(string FileData, string cond): base(FileData)
         {
             Cond = new Condition(cond);
         }

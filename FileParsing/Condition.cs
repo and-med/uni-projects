@@ -96,7 +96,7 @@ namespace FileParsing
             int positionOfVariable;
             while ((positionOfVariable = data.IndexOf(StaticData.VariableSeparator, startingPosition)) != -1)
             {
-                startingPosition = StaticText.GetEndOfVariableAtPosition(data, positionOfVariable + 1);
+                startingPosition = ParseUtilites.GetEndOfVariableAtPosition(data, positionOfVariable + 1);
                 valuesToReplace.Add(data.Substring(positionOfVariable + 1, startingPosition - positionOfVariable));
             }
             foreach (var val in valuesToReplace.Where(context.Contains))

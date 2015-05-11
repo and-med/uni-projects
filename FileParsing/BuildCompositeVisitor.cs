@@ -11,15 +11,7 @@
             currentPosition = currPos;
             table = tb;
         }
-        //public override void Visit(UserDefinedMacrosConstruction usDef)
-        //{
-        //    throw new System.NotImplementedException();
-        //}
-        //public override void Visit(StaticText st)
-        //{
-        //    throw new System.NotImplementedException();
-        //}
-        private void HandleConstructionAtPosition(ref CompositeConstruction comCon, string name, ref int position)
+        private void HandleConstructionAtPosition(CompositeConstruction comCon, string name, ref int position)
         {
             Macross currentMacros = table.Get(name);
             int macrosDataEndPos = ParseUtilites.GetMacrosCloseBracketPosAfterMacroSep(fileData, position);
@@ -48,7 +40,7 @@
             }
         }
 
-        private void HandleEndConstructionAtPosition(ref CompositeConstruction comCon, int position)
+        private void HandleEndConstructionAtPosition(CompositeConstruction comCon, int position)
         {
             comCon.AddUnit(
                 new StaticText(fileData.Substring(currentPosition, position - currentPosition)));
@@ -66,16 +58,107 @@
                     {
                         if (macrosName != "#end")
                         {
-                            HandleConstructionAtPosition(ref comCon, macrosName, ref position);
+                            HandleConstructionAtPosition(comCon, macrosName, ref position);
                         }
                         else
                         {
-                            HandleEndConstructionAtPosition(ref comCon, position);
+                            HandleEndConstructionAtPosition(comCon, position);
                             return;
                         }
                     }
                 }
             }
         }
+        private void HandleEndOfElseConstruction(ElseConstruction elseCon, int position)
+        {
+            elseCon.AddUnit(
+               new StaticText(fileData.Substring(currentPosition, position - currentPosition)));
+            currentPosition = position;
+        }
+        private void HandleElseConstructionAtPosition(IfConstruction ifCon, string name, ref int position)
+        {
+            ifCon.AddUnit(
+                        new StaticText(fileData.Substring(currentPosition, position - currentPosition)));
+            string macrosData = null;
+            if (name == "#elseif")
+            {
+                int macrosDataEndPos = ParseUtilites.GetMacrosCloseBracketPosAfterMacroSep(fileData, position);
+                macrosData = ParseUtilites.GetMacrossData(fileData, position, macrosDataEndPos);
+                currentPosition = macrosDataEndPos + 1;
+            }
+            else
+            {
+                currentPosition = currentPosition + "#else".Length;
+            }
+            ElseConstruction compositePart = (ElseConstruction)PredefinedMacros.GetCompositePart(name, fileData, macrosData);
+            compositePart.SetFatherIfConstruction(ifCon);
+            ifCon.AddElseConstruction(compositePart);
+            compositePart.StartPositionInFile = position;
+            compositePart.Accept(this);
+            position = currentPosition;
+
+        }
+        public override void Visit(IfConstruction ifCon)
+        {
+            for (int position = currentPosition; position < fileData.Length && ifCon.Stop; ++position)
+            {
+                if (fileData[position] == StaticData.MacroSeparator)
+                {
+                    string macrosName = ParseUtilites.GetMacrosNameInPosition(fileData, position);
+                    if (table.Contains(macrosName))
+                    {
+
+                        if (macrosName == "#else" || macrosName == "#elseif")
+                        {
+                            HandleElseConstructionAtPosition(ifCon, macrosName, ref position);
+                        }
+                        else if (macrosName == "#end")
+                        {
+                            HandleEndConstructionAtPosition(ifCon, position);
+                            ifCon.EndPositionInFile = position;
+                            return;
+                        }
+                        else
+                        {
+                            HandleConstructionAtPosition(ifCon, macrosName, ref position);
+                        }
+                    }
+                }
+            }
+        }
+
+        public override void Visit(ElseConstruction elseCon, IfConstruction ifCon)
+        {
+            for (int position = currentPosition; position < fileData.Length && ifCon.Stop; ++position)
+            {
+
+                if (fileData[position] == StaticData.MacroSeparator)
+                {
+                    string macrosName = ParseUtilites.GetMacrosNameInPosition(fileData, position);
+                    if (table.Contains(macrosName))
+                    {
+
+                        if (macrosName == "#else" || macrosName == "#elseif")
+                        {
+                            HandleEndOfElseConstruction(elseCon, position);
+                            HandleElseConstructionAtPosition(ifCon, macrosName, ref position);
+                        }
+                        else if (macrosName == "#end")
+                        {
+                            HandleEndConstructionAtPosition(elseCon, position);
+                            elseCon.SetFatherStop();
+                            return;
+                        }
+                        else
+                        {
+                            HandleConstructionAtPosition(elseCon, macrosName, ref position);
+                        }
+                    }
+                }
+            }
+        }
+
+       
+
     }
 }

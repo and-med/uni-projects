@@ -15,7 +15,10 @@ namespace FileParsing
             {
                 {"#if", new PredefinedMacros("if", 1, true)},
                 {"#foreach", new PredefinedMacros("foreach", 1, true)},
-                {"#end", new PredefinedMacros("end", 0, false)}
+                {"#end", new PredefinedMacros("end", 0, false)},
+                {"#else", new PredefinedMacros("else",0,false)},
+                {"#elseif",new PredefinedMacros("elseif",1,false)},
+                {"#set",new PredefinedMacros("set",1,false)}
             };
         }
 
@@ -27,6 +30,10 @@ namespace FileParsing
                     return new IfConstruction(fileData, macroData);
                 case "#foreach":
                     return new ForeachConstruction(fileData, macroData);
+                case "#else":
+                    return new ElseConstruction(fileData);
+                case "#elseif":
+                    return new ElseIfConstruction(fileData, macroData);
             }
             throw new ArgumentException("There's no such macros in predefined macroses");
         }

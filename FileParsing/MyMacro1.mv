@@ -2,17 +2,23 @@
 	<body>
 	Hello, $page.Recepient.FirstName $page.Recepient.LastName!
 	Please buy our products...
-	#msg($page.Recepient "This is fantastic to meet you here
+	#msg("Pavlo" "This is fantastic to meet you here
 	greetings!")
 	#printMichaelPidar()
-	#if (($page.Recepient.FirstName =="Pavlo" && $page.Recepient.LastName.Length >= 5) || $page.Sender.GetProducts().Count > 1)
+	#if (($page.Recepient.FirstName =="Pavlo" && $page.Recepient.LastName.Length >= 5) && $page.Sender.GetProducts().Count != 0)
 		We know you are Pavlo,
 		And we know your address: "$page.Recepient.Address"
 		We like when Pavlo's buy our products,
 		We'll sell you everything for free
 	#end
-	#if  (6>5  )
-		Test1: This should print!
+	#if  (4>5  )
+		Test1: This should not print!
+	#elseif(6 > 4)
+	#printMichaelPidar()
+		#if($page.Recepient.FirstName != $page.Recepient.LastName)
+			Test2: This should print
+			#printMichaelPidar()
+		#end
 	#end
 	#if(6 < 5)
 		Test2: This should not print!
@@ -33,7 +39,7 @@
 <html>
 #macro(msg $pig $greetingsString)
 	$greetingsString
-	PS: $pig.FirstName
+	PS: $pig
 	It is working!
 #end
 #macro(printMichaelPidar)

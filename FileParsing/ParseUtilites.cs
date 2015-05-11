@@ -8,17 +8,17 @@ namespace FileParsing
     {
         public static string GetMacrosNameInPosition(string where, int macroSeparatorPos)
         {
-            int index = where.IndexOfAny(new[] {' ', '\t', '\n', '\r', '('}, macroSeparatorPos);
+            int index = @where.IndexOfAny(new[] {' ', '\t', '\n', '\r', '('}, macroSeparatorPos);
             if (index == -1)
             {
-                index = where.Length;
+                index = @where.Length;
             }
-            return where.Substring(macroSeparatorPos, index - macroSeparatorPos);
+            return @where.Substring(macroSeparatorPos, index - macroSeparatorPos);
         }
         public static int GetMacrosCloseBracketPosAfterMacroSep(string where, int macroSeparatorPosition)
         {
-            int afterOpenBracketPos = where.IndexOf('(', macroSeparatorPosition) + 1;
-            return GetMacrosCloseBracketPosAfterOpenBracket(where, afterOpenBracketPos);
+            int afterOpenBracketPos = @where.IndexOf('(', macroSeparatorPosition) + 1;
+            return GetMacrosCloseBracketPosAfterOpenBracket(@where, afterOpenBracketPos);
         }
         public static int GetMacrosCloseBracketPosAfterOpenBracket(string where, int afterOpenBracketPos)
         {
@@ -26,11 +26,11 @@ namespace FileParsing
             int countNotClosedBrackets = 1;
             while (countNotClosedBrackets != 0)
             {
-                if (where[currentPos] == ')')
+                if (@where[currentPos] == ')')
                 {
                     countNotClosedBrackets -= 1;
                 }
-                else if (where[currentPos] == '(')
+                else if (@where[currentPos] == '(')
                 {
                     countNotClosedBrackets += 1;
                 }
@@ -40,15 +40,15 @@ namespace FileParsing
         }
         public static string GetMacrossData(string where, int macroSeparatorPos, int macrosCloseBracketPos)
         {
-            int macrosDataStartPos = where.IndexOf('(', macroSeparatorPos) + 1;
-            return where.Substring(macrosDataStartPos,
+            int macrosDataStartPos = @where.IndexOf('(', macroSeparatorPos) + 1;
+            return @where.Substring(macrosDataStartPos,
                 macrosCloseBracketPos - macrosDataStartPos);
         }
         public static string GetMacrossData(string where, int macroSeparatorPosition)
         {
-            int macrosDataStartPos = where.IndexOf('(', macroSeparatorPosition) + 1;
-            int macrosDataEndPos = ParseUtilites.GetMacrosCloseBracketPosAfterOpenBracket(where, macrosDataStartPos);
-            return where.Substring(macrosDataStartPos,
+            int macrosDataStartPos = @where.IndexOf('(', macroSeparatorPosition) + 1;
+            int macrosDataEndPos = ParseUtilites.GetMacrosCloseBracketPosAfterOpenBracket(@where, macrosDataStartPos);
+            return @where.Substring(macrosDataStartPos,
                 macrosDataEndPos - macrosDataStartPos);
         }
         public static string[] SplitCommaSeparated(string data)
@@ -119,11 +119,11 @@ namespace FileParsing
             }
             else if (arg.Contains('.'))
             {
-                res = double.Parse(arg);
+                res = Double.Parse(arg);
             }
             else
             {
-                res = int.Parse(arg);
+                res = Int32.Parse(arg);
             }
             return res;
         }
@@ -136,6 +136,26 @@ namespace FileParsing
                 res[i] = ParseArgument(split[i], context);
             }
             return res;
+        }
+        public static int GetEndOfVariableAtPosition(string textData, int position)
+        {
+            if (StaticData.IsAllowedFirstCharacterForVariable(textData[position]))
+            {
+                position += 1;
+                while (position < textData.Length && (StaticData.IsAllowedCharacterForVariable(textData[position]) || textData[position] == '.'
+                       || (textData[position] == '(' && textData[position + 1] == ')')))
+                {
+                    if (textData[position] == '(')
+                    {
+                        position += 2;
+                    }
+                    else
+                    {
+                        position += 1;
+                    }
+                }
+            }
+            return position - 1;
         }
     }
 }
