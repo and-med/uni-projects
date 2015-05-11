@@ -1,25 +1,32 @@
+#if(4>2)
+	Hoggi
+#end
 <html>
 	<body>
 	Hello, $page.Recepient.FirstName $page.Recepient.LastName!
 	Please buy our products...
 	#msg("Pavlo" "This is fantastic to meet you here
 	greetings!")
-	#printMichaelPidar()
 	#if (($page.Recepient.FirstName =="Pavlo" && $page.Recepient.LastName.Length >= 5) && $page.Sender.GetProducts().Count != 0)
 		We know you are Pavlo,
 		And we know your address: "$page.Recepient.Address"
 		We like when Pavlo's buy our products,
 		We'll sell you everything for free
 	#end
-	#if ( 4>5 )
+
+	
+	#elseif(fds)
+		fidso
+	
+	#if  ($cat )
 		Test1: This should not print!
 	#elseif(6 > 4)
-		#printMichaelPidar()
 		#if($page.Recepient.FirstName != $page.Recepient.LastName)
 			Test2: This should print
-			#printMichaelPidar()
 		#end
 	#end
+	#include("C:\Users\Mykhailo\Desktop\MacroEngine-master\FileParsing\Macros.cs")
+	#parse("C:\Users\Mykhailo\Desktop\MacroEngine-master\FileParsing\temp.txt")
 	#if(6 < 5)
 		Test2: This should not print!
 	#end
@@ -27,15 +34,10 @@
 		Test3: This should print!
 	#end
 	This should be as it is : $unexistingVariable
-	#break
+	
 	And here are your products listed:
 	#foreach($product in $page.Recepient.GetProducts())
-		#if($product.Price > 10) -Product named $product.Name costs $product.Price #end
-		#if($product.Name == "macbook air") 
-			#if($product.Price > 100) This should be first: Sorry there is nothing better than macbook air! #end
-			This should be second: Sorry
-		#break
-		#end
+		#if($product.Price > 1000) -Product named $product.Name costs $product.Price #end
 	#end
 	Thanks,
 	Sincerely yours
@@ -45,9 +47,5 @@
 #macro(msg $pig $greetingsString)
 	$greetingsString
 	PS: $pig
-	#break
 	It is working!
-#end
-#macro(printMichaelPidar)
-	Michael Pidar!
 #end

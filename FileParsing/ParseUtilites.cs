@@ -6,18 +6,6 @@ namespace FileParsing
 {
     static class ParseUtilites
     {
-        public static void ParseConfigFile(string fileData, out string rootToFiles, out string[] preloaded)
-        {
-            int firstEqualityOperatorPos = fileData.IndexOf('=') + 1;
-            int secondEqualityOperatorPos = fileData.IndexOf('=', firstEqualityOperatorPos);
-            while (StaticData.CharactersToIgnore.Any(c => c == fileData[firstEqualityOperatorPos]))
-            {
-                firstEqualityOperatorPos++;
-            }
-            rootToFiles = fileData.Substring(firstEqualityOperatorPos, 
-                fileData.IndexOfAny(StaticData.CharactersToIgnore, firstEqualityOperatorPos) - firstEqualityOperatorPos);
-            preloaded = SplitCommaSeparated(fileData.Substring(secondEqualityOperatorPos + 1));
-        }
         public static string GetMacrosNameInPosition(string where, int macroSeparatorPos)
         {
             int index = @where.IndexOfAny(new[] {' ', '\t', '\n', '\r', '('}, macroSeparatorPos);
@@ -140,7 +128,7 @@ namespace FileParsing
                 {
                     return tempRes;
                 }
-                return null;
+                return null;               
             }
             return res;
         }
@@ -173,6 +161,40 @@ namespace FileParsing
                 }
             }
             return position - 1;
+        }
+
+        public static string GetPathForIncludeParse(string textData)
+        {
+            int startQuotes = textData.IndexOf(("\""), StringComparison.Ordinal);
+            int endQuotes = textData.IndexOf("\"", startQuotes + 1, StringComparison.Ordinal);
+            return  textData.Substring(startQuotes + 1, endQuotes - startQuotes - 1);
+
+        }
+        public static string[] SplitForSet(string arg)
+        {
+            if (arg.Contains("="))
+            {
+                int EqualPosition = arg.IndexOf("=");
+                string[] variables = {arg.Substring(0, EqualPosition), arg.Substring(EqualPosition+1)};
+                if (variables.Length != 2)
+                {
+                    throw new ArgumentException("Not proper set");
+                }
+                variables[0] = variables[0].Substring(1).Replace(" ", "");
+                if (variables[1].Contains("\""))
+                {
+                    int firstPosition = variables[1].IndexOf("\"", StringComparison.Ordinal);
+                    int secondPosition = variables[1].IndexOf("\"", firstPosition+1, StringComparison.Ordinal);
+                    variables[1] = variables[1].Substring(firstPosition, secondPosition);
+                }
+                else
+                {
+                    variables[1] = variables[1].Replace(" ", "");
+                }
+                return variables;
+
+            }
+            throw new ArgumentException("Not proper set");
         }
     }
 }

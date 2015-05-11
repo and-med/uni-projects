@@ -43,8 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BreakConstruction.cs" />
-    <Compile Include="BreakException.cs" />
     <Compile Include="BuildCompositeVisitor.cs" />
     <Compile Include="CompositeConstruction.cs" />
     <Compile Include="Condition.cs" />
@@ -54,10 +52,11 @@
     <Compile Include="ForeachConstruction.cs" />
     <Compile Include="CompositeView.cs" />
     <Compile Include="IfConstruction.cs" />
+    <Compile Include="IncludeConstruction.cs" />
     <Compile Include="MacroEngine.cs" />
     <Compile Include="Macros.cs" />
     <Compile Include="PagesInfo.cs" />
-    <Compile Include="Params.cs" />
+    <Compile Include="ParseConstruction.cs" />
     <Compile Include="ParseUtilites.cs" />
     <Compile Include="PredefinedMacros.cs" />
     <Compile Include="SetMacros.cs" />
@@ -78,7 +77,6 @@
     <None Include="App.config" />
     <None Include="jsonFile.json" />
     <None Include="MyMacro1.mv" />
-    <None Include="temp.json" />
     <None Include="_macros\config_files\check1.conf" />
     <None Include="_macros\json_conf\check1.json" />
     <None Include="_macros\templates\check1\email.mv" />

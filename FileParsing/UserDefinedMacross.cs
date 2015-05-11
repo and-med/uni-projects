@@ -49,7 +49,7 @@ namespace FileParsing
                 searchAfter = positionOfMacros + 1;
             }
         }
-        public static void RegisterWithParsingFile(TableOfMacros table, ref string fileData)
+        public static void Register(TableOfMacros table, ref string fileData)
         {
             RegisterWitoutBuilding(table, fileData);
             List<KeyValuePair<int, int>> startVsEndPositions = new List<KeyValuePair<int, int>>();
@@ -75,29 +75,7 @@ namespace FileParsing
             }
             UpdateString(ref fileData, startVsEndPositions);
         }
-        public static void Register(TableOfMacros table, string fileData)
-        {
-            RegisterWitoutBuilding(table, fileData);
-            for (int position = 0; position < fileData.Length; ++position)
-            {
-                if (fileData[position] == StaticData.MacroSeparator)
-                {
-                    string macrosName = ParseUtilites.GetMacrosNameInPosition(fileData, position);
-                    if (macrosName == "#macro")
-                    {
-                        string macrosData = ParseUtilites.GetMacrossData(fileData, position);
-                        string userDefinedMacrossName = StaticData.MacroSeparator + ParseUtilites.SplitAvoidingRedundantCharacters(macrosData)[0];
-                        CompositeView cv = new CompositeView(fileData);
-                        cv.StartPositionInFile = position;
-                        int startOfMacroData = ParseUtilites.GetMacrosCloseBracketPosAfterMacroSep(fileData, position) + 1;
-                        Visitor v = new BuildCompositeVisitor(fileData, table, startOfMacroData);
-                        cv.Accept(v);
-                        position = cv.EndPositionInFile + "#end".Length;
-                        ((UserDefinedMacross)table.Get(userDefinedMacrossName)).CompositeView = cv;
-                    }
-                }
-            }
-        }
+
         private static void UpdateString(ref string fileData, List<KeyValuePair<int, int>> startVsEndPositions)
         {
             StringBuilder newFileData = new StringBuilder();

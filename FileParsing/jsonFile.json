@@ -1,5 +1,47 @@
 ﻿{
-    "configFile": "temp.txt",
-    "pages": [
-        { "page": "page1.mv", "params": 
-          [ { "Key": "logoUrl", "Value": "http..." }, { "Key": "counter", "Value": 25 } ], "recepient": { "address": "Lviv, Franka st. 3", "email": "ph...@gmail.com", "firstName": "Pavlo", "lastName": "Halepa", "products": [ { "dateOfPurchase": "28.05.2015", "name": "iphone5", "price": 600 }, { "dateOfPurchase": "23.03.2015", "name": "macbook air", "price": 1600 } ] }, "sender": { "address": "USA", "email": "sa...@ebay.com", "firstName": "Lee", "lastName": "Engee" } } ] }
+  "configFile": "D:\\_macros\\config_files\\check1.conf",
+  "pages": [
+    {
+      "page": "email.mv",
+      "outputPath": "D:\\_macros\\output\\check1\\output1.html",
+      "recipient": {
+        "firstName": "Pavlo",
+        "lastName": "Halepa",
+        "email": "phal@gmail.com",
+        "address": "Lviv, Franka st. 3",
+        "products": [
+          {
+            "name": "iphone5",
+            "price": "600",
+            "dateOfPurchase": "23.03.2015"
+          },
+          {
+            "name": "macbook air",
+            "price": "1600",
+            "dateOfPurchase": "28.04.2015"
+          }
+        ]
+      },
+      "sender": {
+        "firstName": "Lee",
+        "lastName": "Engee",
+        "email": "sale@ebay.com",
+        "address": "USA"
+      },
+      "params": [
+        {
+          "key": "adminEmail",
+          "value": "someAdmin@gmail.com"
+        },
+        {
+          "key": "numOfAttempts",
+          "value": 5
+        },
+        {
+          "key": "adminName",
+          "value": "Mr Super Admin"
+        }
+      ]
+    }
+  ]
+}
