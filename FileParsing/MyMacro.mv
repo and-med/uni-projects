@@ -1,0 +1,5 @@
+﻿#macro(greet $name)
+	Hello $name!
+#end
+#set($username = "Andriy")
+#greet($username)

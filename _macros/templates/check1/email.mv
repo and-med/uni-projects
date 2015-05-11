@@ -15,7 +15,8 @@
                     Thanks,
                     <br/>
                     $adminName
-					$recepient.FirstName!
+					<br/>
+					$sender.FirstName!
                 </font>
             </td>
         </tr>
