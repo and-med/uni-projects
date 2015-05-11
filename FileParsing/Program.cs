@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Reflection;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
-using System.Text;
 
 namespace FileParsing
 {
@@ -24,41 +20,14 @@ namespace FileParsing
 
         static void Main(string[] args)
         {
-            //Serialize(GetPageInfo());
-            Deserialize();
-            MacroEngine.Initialize(@"D:\Projects\C#\MacroEngine\_macros\json_conf\check1.json");
-                MacroEngine.ParsePages();
-            //Console.WriteLine(MacroEngine.Merge(@"D:\Projects\C#\MacroEngine\FileParsing\MyMacro1.mv", myCont));
+            List<Page> pages = MacroEngine.DownloadJsonFile(@"C:\Users\Mykhailo\Desktop\MacroEngine-master\FileParsing\_macros\json_conf\check1.json");
+            Context myCont = new Context();
+            myCont.AddNewValue("page", GetPageInfo());
+            Console.WriteLine(MacroEngine.Merge(@"C:\Users\Mykhailo\Desktop\MacroEngine-master\FileParsing\MyMacro1.mv", myCont));
             Console.ReadLine();
         }
 
-        static void Deserialize()
-        {
-            PagesInfo newPages;
-            using (StreamReader stream = new StreamReader("..\\..\\temp.json"))
-            {
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(PagesInfo), new DataContractJsonSerializerSettings()
-                {
-                    DateTimeFormat = new DateTimeFormat("dd.MM.yyyy")
-                });
-                byte[] bytes = Encoding.UTF8.GetBytes(stream.ReadToEnd());
-                MemoryStream mStream = new MemoryStream(bytes);
-                newPages = (PagesInfo)ser.ReadObject(mStream);
-            }
-            Console.WriteLine(newPages.ConfigFile);
-        }
-        static void Serialize(PagesInfo p)
-        {
-            using (var stream = File.Create("..\\..\\temp.json"))
-            {
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(PagesInfo), new DataContractJsonSerializerSettings()
-                {
-                    DateTimeFormat = new DateTimeFormat("dd.MM.yyyy")
-                });
-                ser.WriteObject(stream, p);
-            }
-        }
-        static PagesInfo GetPageInfo()
+        static Page GetPageInfo()
         {
             User recepient = new User()
             {
@@ -80,13 +49,12 @@ namespace FileParsing
             Page temp = new Page()
             {
                 PageName = "page1.mv",
-                OutputPath = "D:\\temp_path.txt",
                 Recepient = recepient,
                 Sender = sender,
-                Params = new List<Params>()
+                Params = new Dictionary<string, object>()
                 {
-                    new Params(){ Key = "logoUrl", Value = "http..." }, 
-                    new Params(){ Key = "counter", Value = 25}
+                    { "logoUrl", "http..." }, 
+                    { "counter", 25}
                 }
             };
             PagesInfo newPagesInfo = new PagesInfo
@@ -94,8 +62,7 @@ namespace FileParsing
                 ConfigFile = "temp.txt",
                 Pages = new List<Page>() { temp }
             };
-            newPagesInfo.ConfigFile = "D:\\temp_path.txt";
-            return newPagesInfo;
+            return temp;
         }
     }
 }

@@ -1,1 +1,9 @@
-{"configFile":"D:\\temp_path.txt","pages":[{"outputPath":"D:\\temp_path.txt","page":"page1.mv","params":[{"Key":"logoUrl","Value":"http..."},{"Key":"counter","Value":25}],"recepient":{"address":"Lviv, Franka st. 3","email":"ph...@gmail.com","firstName":"Pavlo","lastName":"Halepa","products":[{"dateOfPurchase":"23.03.2015","name":"iphone5","price":600},{"dateOfPurchase":"28.04.2015","name":"macbook air","price":1600},{"dateOfPurchase":"10.10.2015","name":"Some Stupid Thing","price":5000}]},"sender":{"address":"USA","email":"sa...@ebay.com","firstName":"Lee","lastName":"Engee","products":[]}}]}
+#if(8 < 12)
+	HotDog
+#end
+#if(9+3 > 1)
+	Puppy
+#end
+#set($kitty = "pussy")
+$kitty
+	

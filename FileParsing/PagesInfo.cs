@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace FileParsing
 {
     [DataContract]
-    public class PagesInfo
+    class PagesInfo
     {
         [DataMember(Name = "configFile")]
         public string ConfigFile { get; set; }

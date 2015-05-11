@@ -8,45 +8,37 @@ namespace FileParsing
         private List<ElseConstruction> ElseUnits; 
         private Condition Cond { get; set; }
         public bool Stop { get; set; }
-        public IfConstruction(TextUnit father, string fileData, string condition):base(father, fileData)
+        public IfConstruction(string fileData, string condition):base(fileData)
         {
             Cond = new Condition(condition);
             ElseUnits = new List<ElseConstruction>();
             Stop = true;
         }
-        public IfConstruction(TextUnit father, string fileData):base(father, fileData)
+        public IfConstruction(string fileData):base(fileData)
         {
             Stop = true;
         }
         public override string Evaluate(Context context)
         {
             StringBuilder result = new StringBuilder();
-            try
+            if (Cond.Evaluate(context))
             {
-                if (Cond.Evaluate(context))
+                foreach (var unit in Units)
                 {
-                    foreach (var unit in Units)
-                    {
-                        result.Append(unit.Evaluate(context));
-                    }
-                }
-                else
-                {
-                    foreach (var eUnit in ElseUnits)
-                    {
-                        if (eUnit.GetResultOfCondition(context))
-                        {
-                            result.Append(eUnit.Evaluate(context));
-
-                            break;
-                        }
-                    }
+                    result.Append(unit.Evaluate(context));
                 }
             }
-            catch (BreakException ex)
+            else
             {
-                ex.AddToResult(result.ToString());
-                throw;
+                foreach (var eUnit in ElseUnits)
+                {
+                    if (eUnit.GetResultOfCondition(context))
+                    {
+                        result.Append(eUnit.Evaluate(context));
+
+                        break;
+                    }
+                }
             }
             return result.ToString();
         }

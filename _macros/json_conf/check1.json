@@ -1,9 +1,9 @@
 {
-  "configFile": "D:\\Projects\\C#\\MacroEngine\\_macros\\config_files\\check1.conf",
+  "configFile": "D:\_macros\config_files\check1.conf",
   "pages": [
     {
       "page": "email.mv",
-      "outputPath": "D:\\Projects\\C#\\MacroEngine\\_macros\\output\\check1\\output1.html",
+      "outputPath": "D:\_macros\output\check1\output1.html",
       "recipient": {
         "firstName": "Pavlo",
         "lastName": "Halepa",

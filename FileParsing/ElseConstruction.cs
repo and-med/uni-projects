@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,26 +9,21 @@ namespace FileParsing
 {
     class ElseConstruction: CompositeConstruction
     {
+        private IfConstruction FatherIfConstruction;
+
         public override string Evaluate(Context context)
         {
-            StringBuilder result = new StringBuilder();
-            try
+            StringBuilder result = new StringBuilder();            
+            foreach (var unit in Units)
             {
-                foreach (var unit in Units)
-                {
-                    result.Append(unit.Evaluate(context));
-                }  
-            }
-            catch (BreakException breakException)
-            {
-                breakException.AddToResult(result.ToString());
-                throw;
-            }        
+                result.Append(unit.Evaluate(context));
+            }          
             return result.ToString();
         }
 
-        public ElseConstruction(string FileData): base(null, FileData)
+        public ElseConstruction(string FileData): base(FileData)
         {
+            FatherIfConstruction = null;
         }
         public virtual bool GetResultOfCondition(Context cont)
         {
@@ -38,16 +32,16 @@ namespace FileParsing
        
         public void SetFatherIfConstruction(IfConstruction ifCon)
         {
-            Father = ifCon;
+            FatherIfConstruction = ifCon;
         }
 
         public void SetFatherStop()
         {
-            ((IfConstruction)Father).Stop = false;
+            FatherIfConstruction.Stop = false;
         }
         public override void Accept(Visitor v)
         {
-            v.Visit(this,(IfConstruction)Father);
+            v.Visit(this,FatherIfConstruction);
         }
     }
 }

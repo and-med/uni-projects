@@ -14,8 +14,6 @@ namespace FileParsing
         public string Email { get; set; }
         [DataMember(Name = "address")]
         public string Address { get; set; }
-        [DataMember(Name = "products")]
-        private List<Product> products;
 
         public User()
         {
@@ -29,6 +27,8 @@ namespace FileParsing
             Address = address;
             products = new List<Product>();
         }
+        [DataMember]
+        private List<Product> products;
 
         public void AddProduct(Product p)
         {

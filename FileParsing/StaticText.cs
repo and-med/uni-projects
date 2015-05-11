@@ -6,7 +6,7 @@ namespace FileParsing
 {
     class StaticText: TextUnit
     {
-        public StaticText(TextUnit father, string data) : base(father, data) { }
+        public StaticText(string data) : base(data) { }
 
         public override string Evaluate(Context context)
         {

@@ -10,3 +10,9 @@ D:\Projects\C#\MacroEngine\FileParsing\obj\Debug\FileParsing.pdb
 D:\Projects\C#\MacroEngine\FileParsing\bin\Debug\FileParsing.exe
 D:\Projects\C#\MacroEngine\FileParsing\bin\Debug\FileParsing.pdb
 D:\Projects\C#\MacroEngine\FileParsing\obj\Debug\FileParsing.csprojResolveAssemblyReference.cache
+C:\Users\Mykhailo\Desktop\MacroEngine-master\FileParsing\bin\Debug\FileParsing.exe.config
+C:\Users\Mykhailo\Desktop\MacroEngine-master\FileParsing\obj\Debug\FileParsing.exe
+C:\Users\Mykhailo\Desktop\MacroEngine-master\FileParsing\obj\Debug\FileParsing.pdb
+C:\Users\Mykhailo\Desktop\MacroEngine-master\FileParsing\obj\Debug\FileParsing.csprojResolveAssemblyReference.cache
+C:\Users\Mykhailo\Desktop\MacroEngine-master\FileParsing\bin\Debug\FileParsing.exe
+C:\Users\Mykhailo\Desktop\MacroEngine-master\FileParsing\bin\Debug\FileParsing.pdb

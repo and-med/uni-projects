@@ -8,14 +8,16 @@ namespace FileParsing
 {
     class SetMacros:TextUnit
     {
-        public SetMacros(TextUnit father, string data) : base(father, data)
+        private readonly string NewVariable;
+        public SetMacros(string fileData, string macroData) : base(fileData)
         {
-            
+            NewVariable = macroData;
         }
-
         public override string Evaluate(Context context)
         {
-            return string.Format("pes");
+            string[] arguments = ParseUtilites.SplitForSet(NewVariable);
+            context.AddNewValue(arguments[0],ParseUtilites.ParseArgument(arguments[1],context));
+            return "";
         }
     }
 }
