@@ -20,28 +20,29 @@ namespace FileParsing
                 {"#elseif",new PredefinedMacros("elseif",1,false)},
                 {"#set",new PredefinedMacros("set",1,false)},
                 {"#include",new PredefinedMacros("include",1,false) },
-                {"#parse", new PredefinedMacros("parse",1,false) }
+                {"#parse", new PredefinedMacros("parse",1,false) },
+                {"#break", new PredefinedMacros("break", 0, false)}
             };
         }
 
-        public static TextUnit GetMacro(string macroName, string fileData, string macroData)
+        public static TextUnit GetMacro(TextUnit father, string macroName, string fileData, string macroData)
         {
             switch (macroName)
             {
                 case "#if":
-                    return new IfConstruction(fileData, macroData);
+                    return new IfConstruction(father, fileData, macroData);
                 case "#foreach":
-                    return new ForeachConstruction(fileData, macroData);
+                    return new ForeachConstruction(father, fileData, macroData);
                 case "#else":
                     return new ElseConstruction(fileData);
                 case "#elseif":
                     return new ElseIfConstruction(fileData, macroData);
                 case "#set":
-                    return new SetMacros(fileData,macroData);
+                    return new SetMacros(father, fileData,macroData);
                 case "#include":
-                    return new IncludeConstruction(fileData,macroData);
+                    return new IncludeConstruction(father, fileData,macroData);
                 case "#parse":
-                    return new ParseConstruction(fileData,macroData);
+                    return new ParseConstruction(father, fileData,macroData);
             }
             throw new ArgumentException("There's no such macros in predefined macroses");
         }

@@ -3,37 +3,7 @@
 #end
 <html>
 	<body>
-	Hello, $page.Recepient.FirstName $page.Recepient.LastName!
-	Please buy our products...
-	#msg("Pavlo" "This is fantastic to meet you here
-	greetings!")
-	#if (($page.Recepient.FirstName =="Pavlo" && $page.Recepient.LastName.Length >= 5) && $page.Sender.GetProducts().Count != 0)
-		We know you are Pavlo,
-		And we know your address: "$page.Recepient.Address"
-		We like when Pavlo's buy our products,
-		We'll sell you everything for free
-	#end
-
-	
-	#elseif(fds)
-		fidso
-	
-	#if  ($cat )
-		Test1: This should not print!
-	#elseif(6 > 4)
-		#if($page.Recepient.FirstName != $page.Recepient.LastName)
-			Test2: This should print
-		#end
-	#end
-	#include("C:\Users\Mykhailo\Desktop\MacroEngine-master\FileParsing\Macros.cs")
-	#parse("C:\Users\Mykhailo\Desktop\MacroEngine-master\FileParsing\temp.txt")
-	#if(6 < 5)
-		Test2: This should not print!
-	#end
-	#if("Pavlo" =="Pavlo"  )
-		Test3: This should print!
-	#end
-	This should be as it is : $unexistingVariable
+	#elseif(5>6)
 	
 	And here are your products listed:
 	#foreach($product in $page.Recepient.GetProducts())

@@ -9,12 +9,12 @@ namespace FileParsing
         [DataMember(Name = "page")]
         public string PageName { get; set; }
         [DataMember(Name = "outputPath")]
-        public string OutPutPage { get; set; }
-        [DataMember(Name = "recepient")]
+        public string OutputPath { get; set; }
+        [DataMember(Name = "recipient")]
         public User Recepient { get; set; }
         [DataMember(Name = "sender")]
         public User Sender { get; set; }
         [DataMember(Name = "params")]
-        public Dictionary<string, object> Params { get; set; }
+        public List<Params> Params { get; set; }
     }
 }

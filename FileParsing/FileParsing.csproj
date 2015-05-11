@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BreakConstruction.cs" />
+    <Compile Include="BreakException.cs" />
     <Compile Include="BuildCompositeVisitor.cs" />
     <Compile Include="CompositeConstruction.cs" />
     <Compile Include="Condition.cs" />
@@ -56,6 +58,7 @@
     <Compile Include="MacroEngine.cs" />
     <Compile Include="Macros.cs" />
     <Compile Include="PagesInfo.cs" />
+    <Compile Include="Params.cs" />
     <Compile Include="ParseConstruction.cs" />
     <Compile Include="ParseUtilites.cs" />
     <Compile Include="PredefinedMacros.cs" />
@@ -84,7 +87,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="configFile.txt" />
-    <Content Include="temp.txt" />
     <Content Include="_macros\exe\run_bat.txt" />
     <Content Include="_macros\good_output\check1\good_check1.html" />
   </ItemGroup>

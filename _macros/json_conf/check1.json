@@ -1,9 +1,9 @@
 {
-  "configFile": "D:\_macros\config_files\check1.conf",
+  "configFile": "D:\\Projects\\C#\\MacroEngine\\_macros\\config_files\\check1.conf",
   "pages": [
     {
       "page": "email.mv",
-      "outputPath": "D:\_macros\output\check1\output1.html",
+      "outputPath": "D:\\Projects\\C#\\MacroEngine\\_macros\\output\\check1\\output1.html",
       "recipient": {
         "firstName": "Pavlo",
         "lastName": "Halepa",
@@ -12,12 +12,12 @@
         "products": [
           {
             "name": "iphone5",
-            "price": "600",
+            "price": 600,
             "dateOfPurchase": "23.03.2015"
           },
           {
             "name": "macbook air",
-            "price": "1600",
+            "price": 1600,
             "dateOfPurchase": "28.04.2015"
           }
         ]

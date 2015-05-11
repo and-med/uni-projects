@@ -1,9 +1,0 @@
-#if(8 < 12)
-	HotDog
-#end
-#if(9+3 > 1)
-	Puppy
-#end
-#set($kitty = "pussy")
-$kitty
-	

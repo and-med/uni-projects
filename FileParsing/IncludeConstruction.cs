@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace FileParsing
 {
-    class IncludeConstruction:TextUnit
+    class IncludeConstruction: TextUnit
     {
 
         private readonly string PathToFile;
-        public IncludeConstruction(string fileData, string macroData):base(fileData)
+        public IncludeConstruction(TextUnit father, string fileData, string macroData):base(father, fileData)
         {
             PathToFile = macroData;
         }

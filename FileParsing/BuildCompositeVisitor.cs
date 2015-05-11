@@ -14,14 +14,24 @@
         private void HandleConstructionAtPosition(CompositeConstruction comCon, string name, ref int position)
         {
             Macross currentMacros = table.Get(name);
+            if (currentMacros.Name == "break")
+            {
+                comCon.AddUnit(
+                    new StaticText(comCon, fileData.Substring(currentPosition, position - currentPosition)));
+                TextUnit comp = new BreakConstruction(comCon, fileData);
+                comCon.AddUnit(comp);
+                currentPosition = position + name.Length;
+                position = currentPosition;
+                return;
+            }
             int macrosDataEndPos = ParseUtilites.GetMacrosCloseBracketPosAfterMacroSep(fileData, position);
             string macrosData = ParseUtilites.GetMacrossData(fileData, position, macrosDataEndPos);
             comCon.AddUnit(
-                new StaticText(fileData.Substring(currentPosition, position - currentPosition)));
-            currentPosition = macrosDataEndPos + 1;
-            if (currentMacros.IsCompositeMacross() && currentMacros.Name!="#elseif" && currentMacros.Name!="#else")
+                new StaticText(comCon, fileData.Substring(currentPosition, position - currentPosition)));
+            if (currentMacros.IsCompositeMacross() && currentMacros.Name != "#elseif" && currentMacros.Name!="#else")
             {
-                TextUnit compositePart = PredefinedMacros.GetMacro(name, fileData, macrosData);
+                currentPosition = macrosDataEndPos + 1;
+                TextUnit compositePart = PredefinedMacros.GetMacro(comCon, name, fileData, macrosData);
                 comCon.AddUnit(compositePart);
                 CompositeConstruction comp = (CompositeConstruction)compositePart;
                 comp.StartPositionInFile = position;
@@ -30,17 +40,18 @@
             }
             else
             {
+                currentPosition = macrosDataEndPos + 1;
                 if (currentMacros is UserDefinedMacross)
                 {
-                    UserDefinedMacross userDefined = (UserDefinedMacross) currentMacros;
-                    TextUnit comp = new UserDefinedMacrosConstruction(userDefined, fileData, macrosData);
+                    UserDefinedMacross userDefined = (UserDefinedMacross)currentMacros;
+                    TextUnit comp = new UserDefinedMacrosConstruction(comCon, userDefined, fileData, macrosData);
                     comCon.AddUnit(comp);
                     position = currentPosition;
                 }
                 else
                 {
-                    TextUnit comp = PredefinedMacros.GetMacro(name, fileData, macrosData);
-                    comCon.AddUnit(comp);                
+                    TextUnit comp = PredefinedMacros.GetMacro(comCon, name, fileData, macrosData);
+                    comCon.AddUnit(comp);
                     position = currentPosition;
                 }
             }
@@ -49,7 +60,7 @@
         private void HandleEndConstructionAtPosition(CompositeConstruction comCon, int position)
         {
             comCon.AddUnit(
-                new StaticText(fileData.Substring(currentPosition, position - currentPosition)));
+                new StaticText(comCon, fileData.Substring(currentPosition, position - currentPosition)));
             currentPosition = position + "#end".Length;
             comCon.EndPositionInFile = position;
         }
@@ -75,19 +86,22 @@
                     }
                 }
             }
-            comCon.AddUnit(
-                new StaticText(fileData.Substring(currentPosition, position - currentPosition)));
+            if (currentPosition < fileData.Length)
+            {
+                comCon.AddUnit(
+                    new StaticText(comCon, fileData.Substring(currentPosition)));
+            }
         }
         private void HandleEndOfElseConstruction(ElseConstruction elseCon, int position)
         {
             elseCon.AddUnit(
-               new StaticText(fileData.Substring(currentPosition, position - currentPosition)));
+               new StaticText(elseCon, fileData.Substring(currentPosition, position - currentPosition)));
             currentPosition = position;
         }
         private void HandleElseConstructionAtPosition(IfConstruction ifCon, string name, ref int position)
         {
             ifCon.AddUnit(
-                        new StaticText(fileData.Substring(currentPosition, position - currentPosition)));
+                        new StaticText(ifCon, fileData.Substring(currentPosition, position - currentPosition)));
             string macrosData = null;
             if (name == "#elseif")
             {
@@ -99,7 +113,7 @@
             {
                 currentPosition = currentPosition + "#else".Length;
             }
-            ElseConstruction compositePart = (ElseConstruction)PredefinedMacros.GetMacro(name, fileData, macrosData);
+            ElseConstruction compositePart = (ElseConstruction)PredefinedMacros.GetMacro(ifCon, name, fileData, macrosData);
             compositePart.SetFatherIfConstruction(ifCon);
             ifCon.AddElseConstruction(compositePart);
             compositePart.StartPositionInFile = position;
@@ -135,7 +149,6 @@
                 }
             }
         }
-
         public override void Visit(ElseConstruction elseCon, IfConstruction ifCon)
         {
             for (int position = currentPosition; position < fileData.Length && ifCon.Stop; ++position)
@@ -167,7 +180,7 @@
             }
         }
 
-       
+
 
     }
 }

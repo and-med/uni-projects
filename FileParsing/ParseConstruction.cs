@@ -12,7 +12,7 @@ namespace FileParsing
 
         private readonly string FilePath;
 
-        public ParseConstruction(string fileData, string macroData) : base(fileData)
+        public ParseConstruction(TextUnit father, string fileData, string macroData) : base(father, fileData)
         {
             FilePath = macroData;
         }

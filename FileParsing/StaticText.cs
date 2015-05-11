@@ -4,9 +4,9 @@ using System.Text;
 
 namespace FileParsing
 {
-    class StaticText: TextUnit
+    class StaticText : TextUnit
     {
-        public StaticText(string data) : base(data) { }
+        public StaticText(TextUnit father, string data) : base(father, data) { }
 
         public override string Evaluate(Context context)
         {

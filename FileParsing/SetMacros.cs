@@ -9,7 +9,7 @@ namespace FileParsing
     class SetMacros:TextUnit
     {
         private readonly string NewVariable;
-        public SetMacros(string fileData, string macroData) : base(fileData)
+        public SetMacros(TextUnit father, string fileData, string macroData) : base(father, fileData)
         {
             NewVariable = macroData;
         }

@@ -5,11 +5,12 @@ using System.Text;
 
 namespace FileParsing
 {
-    class ForeachConstruction: CompositeConstruction
+    class ForeachConstruction : CompositeConstruction
     {
         private string MacroData;
 
-        public ForeachConstruction(string fileData, string foreachData):base(fileData)
+        public ForeachConstruction(TextUnit father, string fileData, string foreachData)
+            : base(father, fileData)
         {
             MacroData = foreachData;
         }
@@ -29,7 +30,7 @@ namespace FileParsing
             {
                 int varStartPosition = MacroData.IndexOf(StaticData.VariableSeparator);
                 int containerStartPosition = MacroData.LastIndexOf(StaticData.VariableSeparator);
-                variable = MacroData.Substring(varStartPosition + 1, 
+                variable = MacroData.Substring(varStartPosition + 1,
                     MacroData.IndexOfAny(StaticData.CharactersToIgnore, varStartPosition) - varStartPosition - 1);
                 container = MacroData.Substring(containerStartPosition + 1, MacroData.Length - containerStartPosition - 1);
             }
@@ -45,15 +46,22 @@ namespace FileParsing
             SplitToVarAndContainer(out variableName, out containerName);
             IEnumerable container = (IEnumerable)context.GetValue(containerName);
             StringBuilder result = new StringBuilder();
-            foreach (var variable in container)
+            try
             {
-                context.AddNewValue(variableName, variable);
-                foreach (var unit in Units)
+                foreach (var variable in container)
                 {
-                    result.Append(unit.Evaluate(context));
+                    context.AddNewValue(variableName, variable);
+                    foreach (var unit in Units)
+                    {
+                        result.Append(unit.Evaluate(context));
+                    }
                 }
+                context.DeleteValue(variableName);
             }
-            context.DeleteValue(variableName);
+            catch (BreakException breakException)
+            {
+                result.Append(breakException.Result);
+            }
             return result.ToString();
         }
     }

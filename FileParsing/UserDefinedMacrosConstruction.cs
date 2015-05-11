@@ -2,11 +2,12 @@
 
 namespace FileParsing
 {
-    class UserDefinedMacrosConstruction: TextUnit
+    class UserDefinedMacrosConstruction : TextUnit
     {
         private UserDefinedMacross actualMacross;
         private string arguments;
-        public UserDefinedMacrosConstruction(UserDefinedMacross macross, string fileData, string macroData): base(fileData)
+        public UserDefinedMacrosConstruction(TextUnit father, UserDefinedMacross macross, string fileData, string macroData)
+            : base(father, fileData)
         {
             arguments = macroData;
             actualMacross = macross;

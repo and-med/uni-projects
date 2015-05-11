@@ -8,7 +8,7 @@ namespace FileParsing
         public int StartPositionInFile { get; set; }
         public int EndPositionInFile { get; set; }
         protected List<TextUnit> Units;
-        protected CompositeConstruction(string data) : base(data)
+        protected CompositeConstruction(TextUnit father, string data): base(father, data)
         {
             Units = new List<TextUnit>();
         }

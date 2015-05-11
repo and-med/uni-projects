@@ -14,9 +14,13 @@ namespace FileParsing
         {
             map = new Dictionary<string, object>();
         }
-        public Context(Dictionary<string, object> range)
+        public Context(List<Params> par)
         {
-            map = range;
+            map = new Dictionary<string, object>();
+            foreach (var parameter in par)
+            {
+                Map[parameter.Key] = parameter.Value;
+            }
         }
         public Dictionary<string, object> Map
         {
