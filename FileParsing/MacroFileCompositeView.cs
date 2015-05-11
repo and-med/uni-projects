@@ -8,6 +8,8 @@ namespace FileParsing
     {
         public MacroFileCompositeView(string data) : base(data)
         {
+
+
         }
     }
 }

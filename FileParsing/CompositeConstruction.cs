@@ -20,10 +20,11 @@ namespace FileParsing
             Units.Add(tu);
         }
 
-        public override void Accept(Visitor v)
+        public virtual void Accept(Visitor v)
         {
             v.Visit(this);
         }
+
         public override string Evaluate(Context context)
         {
             StringBuilder result = new StringBuilder();

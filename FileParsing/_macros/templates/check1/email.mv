@@ -1,0 +1,23 @@
+#templateHeader("SYSTEM SECURITY" "Account Locked")
+<table>
+    <tbody>
+        <tr>
+            <td>
+                <font face="Arial">
+                    You have exceeded the maximum number of failed login attempts ($numOfAttempts attempts) and your account has been locked.
+                    <br/>
+                    Your administrator has been notified and may select to unblock your account.
+                    <br/>
+                    <br/>
+                    If you require immediate assistance, please contact your administrator ($adminEmail) or call Support at 123-295-1000.
+                    <br/>
+                    <br/>
+                    Thanks,
+                    <br/>
+                    $adminName
+                </font>
+            </td>
+        </tr>
+    </tbody>
+</table>
+#templateFooter()
