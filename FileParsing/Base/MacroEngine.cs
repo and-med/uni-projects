@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
@@ -65,8 +66,16 @@ namespace FileParsing.Base
             string fileData;
             RegisterUserDefinedMacrossIncludingParsing(filepath, out fileData);
             MainCompositeView compositeView = new MainCompositeView(fileData);
-            Visitor v = new BuildCompositeVisitor(fileData, Table);
-            compositeView.Accept(v);
+            try
+            {
+                Visitor v = new BuildCompositeVisitor(fileData, Table);
+                compositeView.Accept(v);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error while merging file: {0}", Path.GetFileName(filepath));
+                Console.WriteLine("Error message: {0}", ex.Message);
+            }
             return compositeView.Evaluate(context);
         }
         public static void Initialize(string path)

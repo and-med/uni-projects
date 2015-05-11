@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using FileParsing.CompositeView;
 using Microsoft.JScript;
 using Microsoft.JScript.Vsa;
 using Context = FileParsing.Base.Context;

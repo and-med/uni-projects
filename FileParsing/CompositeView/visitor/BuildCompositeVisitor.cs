@@ -72,21 +72,17 @@ namespace FileParsing.CompositeView.visitor
             int position = currentPosition;
             for (; position < fileData.Length; ++position)
             {
-                if (fileData[position] == StaticData.MacroSeparator)
+                if (fileData[position] != StaticData.MacroSeparator) continue;
+                string macrosName = ParseUtilites.GetMacrosNameInPosition(fileData, position);
+                if (!table.Contains(macrosName)) continue;
+                if (macrosName != "#end")
                 {
-                    string macrosName = ParseUtilites.GetMacrosNameInPosition(fileData, position);
-                    if (table.Contains(macrosName))
-                    {
-                        if (macrosName != "#end")
-                        {
-                            HandleConstructionAtPosition(comCon, macrosName, ref position);
-                        }
-                        else
-                        {
-                            HandleEndConstructionAtPosition(comCon, position);
-                            return;
-                        }
-                    }
+                    HandleConstructionAtPosition(comCon, macrosName, ref position);
+                }
+                else
+                {
+                    HandleEndConstructionAtPosition(comCon, position);
+                    return;
                 }
             }
             if (currentPosition < fileData.Length)
@@ -182,8 +178,5 @@ namespace FileParsing.CompositeView.visitor
                 }
             }
         }
-
-
-
     }
 }

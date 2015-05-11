@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using FileParsing.CompositeView;
 using FileParsing.CompositeView.visitor;
@@ -29,7 +30,6 @@ namespace FileParsing.Base
         UserDefinedMacross(string name, List<string> argNames)
             : base(name, (uint)argNames.Count, false, false)
         {
-
             argumentsNames = argNames;
         }
 
@@ -54,51 +54,74 @@ namespace FileParsing.Base
         }
         public static void RegisterWithParsingFile(TableOfMacros table, ref string fileData)
         {
-            RegisterWitoutBuilding(table, fileData);
             List<KeyValuePair<int, int>> startVsEndPositions = new List<KeyValuePair<int, int>>();
-            for (int position = 0; position < fileData.Length; ++position)
+            try
             {
-                if (fileData[position] == StaticData.MacroSeparator)
+                RegisterWitoutBuilding(table, fileData);
+                for (int position = 0; position < fileData.Length; ++position)
                 {
-                    string macrosName = ParseUtilites.GetMacrosNameInPosition(fileData, position);
-                    if (macrosName == "#macro")
+                    if (fileData[position] == StaticData.MacroSeparator)
                     {
-                        string macrosData = ParseUtilites.GetMacrossData(fileData, position);
-                        string userDefinedMacrossName = StaticData.MacroSeparator + ParseUtilites.SplitAvoidingRedundantCharacters(macrosData)[0];
-                        MainCompositeView cv = new MainCompositeView(fileData);
-                        cv.StartPositionInFile = position;
-                        int startOfMacroData = ParseUtilites.GetMacrosCloseBracketPosAfterMacroSep(fileData, position) + 1;
-                        Visitor v = new BuildCompositeVisitor(fileData, table, startOfMacroData);
-                        cv.Accept(v);
-                        position = cv.EndPositionInFile + "#end".Length;
-                        ((UserDefinedMacross)table.Get(userDefinedMacrossName)).CompositeView = cv;
-                        startVsEndPositions.Add(new KeyValuePair<int, int>(cv.StartPositionInFile, cv.EndPositionInFile));
+                        string macrosName = ParseUtilites.GetMacrosNameInPosition(fileData, position);
+                        if (macrosName == "#macro")
+                        {
+                            string macrosData = ParseUtilites.GetMacrossData(fileData, position);
+                            string userDefinedMacrossName = StaticData.MacroSeparator +
+                                                            ParseUtilites.SplitAvoidingRedundantCharacters(macrosData)[0
+                                                                ];
+                            MainCompositeView cv = new MainCompositeView(fileData);
+                            cv.StartPositionInFile = position;
+                            int startOfMacroData =
+                                ParseUtilites.GetMacrosCloseBracketPosAfterMacroSep(fileData, position) + 1;
+                            Visitor v = new BuildCompositeVisitor(fileData, table, startOfMacroData);
+                            cv.Accept(v);
+                            position = cv.EndPositionInFile + "#end".Length;
+                            ((UserDefinedMacross) table.Get(userDefinedMacrossName)).CompositeView = cv;
+                            startVsEndPositions.Add(new KeyValuePair<int, int>(cv.StartPositionInFile,
+                                cv.EndPositionInFile));
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error while building table of macros!");
+                Console.WriteLine("Error message: {0}", ex.Message);
             }
             UpdateString(ref fileData, startVsEndPositions);
         }
         public static void Register(TableOfMacros table, string fileData)
         {
-            RegisterWitoutBuilding(table, fileData);
-            for (int position = 0; position < fileData.Length; ++position)
+            try
             {
-                if (fileData[position] == StaticData.MacroSeparator)
+                RegisterWitoutBuilding(table, fileData);
+                for (int position = 0; position < fileData.Length; ++position)
                 {
-                    string macrosName = ParseUtilites.GetMacrosNameInPosition(fileData, position);
-                    if (macrosName == "#macro")
+                    if (fileData[position] == StaticData.MacroSeparator)
                     {
-                        string macrosData = ParseUtilites.GetMacrossData(fileData, position);
-                        string userDefinedMacrossName = StaticData.MacroSeparator + ParseUtilites.SplitAvoidingRedundantCharacters(macrosData)[0];
-                        MainCompositeView cv = new MainCompositeView(fileData);
-                        cv.StartPositionInFile = position;
-                        int startOfMacroData = ParseUtilites.GetMacrosCloseBracketPosAfterMacroSep(fileData, position) + 1;
-                        Visitor v = new BuildCompositeVisitor(fileData, table, startOfMacroData);
-                        cv.Accept(v);
-                        position = cv.EndPositionInFile + "#end".Length;
-                        ((UserDefinedMacross)table.Get(userDefinedMacrossName)).CompositeView = cv;
+                        string macrosName = ParseUtilites.GetMacrosNameInPosition(fileData, position);
+                        if (macrosName == "#macro")
+                        {
+                            string macrosData = ParseUtilites.GetMacrossData(fileData, position);
+                            string userDefinedMacrossName = StaticData.MacroSeparator +
+                                                            ParseUtilites.SplitAvoidingRedundantCharacters(macrosData)[0
+                                                                ];
+                            MainCompositeView cv = new MainCompositeView(fileData);
+                            cv.StartPositionInFile = position;
+                            int startOfMacroData =
+                                ParseUtilites.GetMacrosCloseBracketPosAfterMacroSep(fileData, position) + 1;
+                            Visitor v = new BuildCompositeVisitor(fileData, table, startOfMacroData);
+                            cv.Accept(v);
+                            position = cv.EndPositionInFile + "#end".Length;
+                            ((UserDefinedMacross) table.Get(userDefinedMacrossName)).CompositeView = cv;
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error while building table of macros!");
+                Console.WriteLine("Error message: {0}", ex.Message);
             }
         }
         private static void UpdateString(ref string fileData, List<KeyValuePair<int, int>> startVsEndPositions)

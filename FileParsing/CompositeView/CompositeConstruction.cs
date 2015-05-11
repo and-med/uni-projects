@@ -39,6 +39,11 @@ namespace FileParsing.CompositeView
                 breakException.AddToResult(result.ToString());
                 throw;
             }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error occurred while executing!");
+                Console.WriteLine("Error message: {0}", e.Message);
+            }
             return result.ToString();
         }
     }
