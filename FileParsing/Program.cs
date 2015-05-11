@@ -23,7 +23,7 @@ namespace FileParsing
             List<Page> pages = MacroEngine.DownloadJsonFile("..//..//jsonFile.json");
             Context myCont = new Context();
             myCont.AddNewValue("page", GetPageInfo());
-            Console.WriteLine(MacroEngine.Merge(@"D:\Projects\C#\MyProjects\MacroEngine\FileParsing\MyMacro1.mv", myCont, new TableOfMacros()));
+            Console.WriteLine(MacroEngine.Merge(@"D:\Projects\C#\MacroEngine\FileParsing\MyMacro1.mv", myCont));
             Console.ReadLine();
         }
 

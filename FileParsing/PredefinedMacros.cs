@@ -3,32 +3,34 @@ using System.Collections.Generic;
 
 namespace FileParsing
 {
-    static class PredefinedMacros
+    class PredefinedMacros : Macross
     {
-        private static Dictionary<string, Macros> builtInMacroses;
+        private static readonly Dictionary<string, Macross> builtInMacroses;
+
+        public PredefinedMacros(string name, uint countArgs, bool isComposite) : base(name, countArgs, isComposite, true) { }
 
         static PredefinedMacros()
         {
-            builtInMacroses = new Dictionary<string, Macros>()
+            builtInMacroses = new Dictionary<string, Macross>()
             {
-                {"#if", new Macros("if", 1, true, true)},
-                {"#foreach", new Macros("foreach", 1, true, true)},
-                {"#end", new Macros("end", 0, false, true)}
+                {"#if", new PredefinedMacros("if", 1, true)},
+                {"#foreach", new PredefinedMacros("foreach", 1, true)},
+                {"#end", new PredefinedMacros("end", 0, false)}
             };
         }
 
-        public static TextUnit GetCompositePart(string macroName, string macroData)
+        public static TextUnit GetCompositePart(string macroName, string fileData, string macroData)
         {
             switch (macroName)
             {
                 case "#if":
-                    return new IfConstruction(macroData);
+                    return new IfConstruction(fileData, macroData);
                 case "#foreach":
-                    return new ForeachConstruction(macroData);
+                    return new ForeachConstruction(fileData, macroData);
             }
             throw new ArgumentException("There's no such macros in predefined macroses");
         }
-        public static Dictionary<string, Macros> Get()
+        public static Dictionary<string, Macross> Get()
         {
             return builtInMacroses;
         }

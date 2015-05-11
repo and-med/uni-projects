@@ -10,14 +10,22 @@ namespace FileParsing
     {
         private static string filesDirectory = "";
 
-        public static string Merge(string filename, Context context, TableOfMacros table)
+        public static void RegisterUserDefinedMacross(string filename, out string fileData, TableOfMacros table)
         {
-            string fileData;
+            string filedat;
             using (var stream = new StreamReader(Path.Combine(filesDirectory, filename)))
             {
-                fileData = stream.ReadToEnd();
+                filedat = stream.ReadToEnd();
             }
-            MacroFileCompositeView compositeView = new MacroFileCompositeView(fileData);
+            UserDefinedMacross.Register(table, ref filedat);
+            fileData = filedat;
+        }
+        public static string Merge(string filename, Context context)
+        {
+            TableOfMacros table = new TableOfMacros();
+            string fileData;
+            RegisterUserDefinedMacross(filename, out fileData, table);
+            CompositeView compositeView = new CompositeView(fileData);
             Visitor v = new BuildCompositeVisitor(fileData, table);
             compositeView.Accept(v);
             return compositeView.Evaluate(context);

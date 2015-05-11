@@ -4,10 +4,6 @@
     {
         public string TextData { get; set; }
 
-        public abstract void Accept(Visitor v);
-        protected TextUnit()
-        {
-        }
         protected TextUnit(string data)
         {
             TextData = data;

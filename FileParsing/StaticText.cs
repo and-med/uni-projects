@@ -7,10 +7,6 @@ namespace FileParsing
     class StaticText: TextUnit
     {
         public StaticText(string data) : base(data) { }
-        public override void Accept(Visitor v)
-        {
-            v.Visit(this);
-        }
 
         public override string Evaluate(Context context)
         {

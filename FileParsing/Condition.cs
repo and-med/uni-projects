@@ -45,35 +45,6 @@ namespace FileParsing
             data = new string((data.SkipWhile(c =>
             { return StaticData.CharactersToIgnore.Any(character => c == character); })).ToArray());
         }
-
-        private object ParseArgument(Context context, string arg)
-        {
-            object res;
-            if (arg.Contains(StaticData.VariableSeparator) && context.Contains(arg.Remove(0, 1)))
-            {
-                res = context.GetValue(arg.Remove(0, 1));
-            }
-            else if (arg.Contains('\"'))
-            {
-                if (arg.IndexOf('\"') == 0 && arg.LastIndexOf('\"') == arg.Length - 1)
-                {
-                    res = arg.Remove(0,1).Remove(arg.Length - 1 - 1, 1);
-                }
-                else
-                {
-                    throw new ArgumentException("Invalid format of string!");
-                }
-            }
-            else if (arg.Contains('.'))
-            {
-                res = double.Parse(arg);
-            }
-            else
-            {
-                res = int.Parse(arg);
-            }
-            return res;
-        }
         private void FillArgValues(Context context, string ch, out object firstArgRes, out object secondArgRes)
         {
             EmitRedundantCharacters();
@@ -82,8 +53,8 @@ namespace FileParsing
             string secondArg =
                 data.Substring(
                     data.LastIndexOfAny(StaticData.CharactersToIgnore.Concat(new[] {ch[ch.Length - 1]}).ToArray()) + 1);  //(new[] { ' ', '\n', '\r', '\t', ch[ch.Length - 1] })+1);
-            firstArgRes = ParseArgument(context, firstArg);
-            secondArgRes = ParseArgument(context, secondArg);
+            firstArgRes = ParseUtilites.ParseArgument(firstArg, context);
+            secondArgRes = ParseUtilites.ParseArgument(secondArg, context);
         }
         private bool EvaluateConditionWithCharacter(Context context, string ch)
         {
@@ -115,7 +86,7 @@ namespace FileParsing
         private bool EvaluateConditionWithoutCharacters(Context context)
         {
             EmitRedundantCharacters();
-            return ParseArgument(context, data) != null;
+            return ParseUtilites.ParseArgument(data, context) != null;
         }
         public bool Evaluate(Context context)
         {

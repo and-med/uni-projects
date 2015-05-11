@@ -5,23 +5,27 @@ namespace FileParsing
 {
     class TableOfMacros
     {
-        private Dictionary<string, Macros> table;
+        private Dictionary<string, Macross> table;
 
         public TableOfMacros()
         {
             table = PredefinedMacros.Get();
         }
 
+        public void Add(string name, Macross macro)
+        {
+            table[name] = macro;
+        }
         public bool Contains(string name)
         {
             return table.ContainsKey(name);
         }
 
-        public Macros Get(string name)
+        public Macross Get(string key)
         {
-            if (Contains(name))
+            if (Contains(key))
             {
-                return table[name];
+                return table[key];
             }
             throw new ArgumentException("There are not such a key in a table");
         }

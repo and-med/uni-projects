@@ -5,38 +5,44 @@
         private readonly string fileData;
         private int currentPosition;
         private readonly TableOfMacros table;
-        public BuildCompositeVisitor(string fd, TableOfMacros tb)
+        public BuildCompositeVisitor(string fd, TableOfMacros tb, int currPos = 0)
         {
             fileData = fd;
-            currentPosition = 0;
+            currentPosition = currPos;
             table = tb;
         }
-        public override void Visit(StaticText st)
-        {
-            throw new System.NotImplementedException();
-        }
-        private string GetMacrosNameInPosition(int position)
-        {
-            return fileData.Substring(position, fileData.IndexOfAny(new[] { ' ', '\t', '\r', '(' }, position) - position);
-        }
+        //public override void Visit(UserDefinedMacrosConstruction usDef)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
+        //public override void Visit(StaticText st)
+        //{
+        //    throw new System.NotImplementedException();
+        //}
         private void HandleConstructionAtPosition(ref CompositeConstruction comCon, string name, ref int position)
         {
-            Macros currentMacros = table.Get(name);
-            int macrosDataStartPos = fileData.IndexOf('(', position) + 1;
-            int macrosDataEndPos = Macros.GetClosedBrackedPos(fileData, macrosDataStartPos);
-            string macrosData = fileData.Substring(macrosDataStartPos,
-                macrosDataEndPos - macrosDataStartPos);
+            Macross currentMacros = table.Get(name);
+            int macrosDataEndPos = ParseUtilites.GetMacrosCloseBracketPosAfterMacroSep(fileData, position);
+            string macrosData = ParseUtilites.GetMacrossData(fileData, position, macrosDataEndPos);
             comCon.AddUnit(
                 new StaticText(fileData.Substring(currentPosition, position - currentPosition)));
             currentPosition = macrosDataEndPos + 1;
-            if (currentMacros.HasEnd())
+            if (currentMacros.IsCompositeMacross())
             {
-                TextUnit compositePart = PredefinedMacros.GetCompositePart(name, macrosData);
+                TextUnit compositePart = PredefinedMacros.GetCompositePart(name, fileData, macrosData);
                 comCon.AddUnit(compositePart);
-                if (compositePart is CompositeConstruction)
+                CompositeConstruction comp = (CompositeConstruction)compositePart;
+                comp.StartPositionInFile = position;
+                comp.Accept(this);
+                position = currentPosition;
+            }
+            else
+            {
+                if (currentMacros is UserDefinedMacross)
                 {
-                    CompositeConstruction comp = (CompositeConstruction)compositePart;
-                    comp.Accept(this);
+                    UserDefinedMacross userDefined = (UserDefinedMacross) currentMacros;
+                    TextUnit comp = new UserDefinedMacrosConstruction(userDefined, fileData, macrosData);
+                    comCon.AddUnit(comp);
                     position = currentPosition;
                 }
             }
@@ -47,6 +53,7 @@
             comCon.AddUnit(
                 new StaticText(fileData.Substring(currentPosition, position - currentPosition)));
             currentPosition = position + "#end".Length;
+            comCon.EndPositionInFile = position;
         }
         public override void Visit(CompositeConstruction comCon)
         {
@@ -54,7 +61,7 @@
             {
                 if (fileData[position] == StaticData.MacroSeparator)
                 {
-                    string macrosName = GetMacrosNameInPosition(position);
+                    string macrosName = ParseUtilites.GetMacrosNameInPosition(fileData, position);
                     if (table.Contains(macrosName))
                     {
                         if (macrosName != "#end")

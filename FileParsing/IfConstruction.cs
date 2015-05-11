@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
 namespace FileParsing
 {
@@ -7,9 +6,9 @@ namespace FileParsing
     {
         private Condition Cond { get; set; }
 
-        public IfConstruction(string condition)
+        public IfConstruction(string fileData, string condition):base(fileData)
         {
-           Cond = new Condition(condition); 
+            Cond = new Condition(condition); 
         }
         public override string Evaluate(Context context)
         {

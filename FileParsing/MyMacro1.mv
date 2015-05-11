@@ -2,7 +2,9 @@
 	<body>
 	Hello, $page.Recepient.FirstName $page.Recepient.LastName!
 	Please buy our products...
-	
+	#msg($page.Recepient "This is fantastic to meet you here
+	greetings!")
+	#printMichaelPidar()
 	#if (($page.Recepient.FirstName =="Pavlo" && $page.Recepient.LastName.Length >= 5) || $page.Sender.GetProducts().Count > 1)
 		We know you are Pavlo,
 		And we know your address: "$page.Recepient.Address"
@@ -29,3 +31,11 @@
 		$page.Sender.FirstName $page.Sender.LastName
 	</body>
 <html>
+#macro(msg $pig $greetingsString)
+	$greetingsString
+	PS: $pig.FirstName
+	It is working!
+#end
+#macro(printMichaelPidar)
+	Michael Pidar!
+#end
