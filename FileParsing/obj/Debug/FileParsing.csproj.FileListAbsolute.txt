@@ -7,3 +7,9 @@ D:\Projects\C#\MyProjects\MacroEngine\FileParsing\obj\Debug\FileParsing.pdb
 D:\Projects\C#\MacroEngine\FileParsing\bin\Debug\FileParsing.exe.config
 D:\Projects\C#\MacroEngine\FileParsing\obj\Debug\FileParsing.exe
 D:\Projects\C#\MacroEngine\FileParsing\obj\Debug\FileParsing.pdb
+C:\Users\Mykhailo\Documents\GitHub\MacroEngine\FileParsing\bin\Debug\FileParsing.exe.config
+C:\Users\Mykhailo\Documents\GitHub\MacroEngine\FileParsing\obj\Debug\FileParsing.exe
+C:\Users\Mykhailo\Documents\GitHub\MacroEngine\FileParsing\obj\Debug\FileParsing.pdb
+C:\Users\Mykhailo\Documents\GitHub\MacroEngine\FileParsing\bin\Debug\FileParsing.exe
+C:\Users\Mykhailo\Documents\GitHub\MacroEngine\FileParsing\bin\Debug\FileParsing.pdb
+C:\Users\Mykhailo\Documents\GitHub\MacroEngine\FileParsing\obj\Debug\FileParsing.csprojResolveAssemblyReference.cache

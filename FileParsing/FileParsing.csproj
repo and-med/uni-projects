@@ -47,6 +47,8 @@
     <Compile Include="CompositeConstruction.cs" />
     <Compile Include="Condition.cs" />
     <Compile Include="Context.cs" />
+    <Compile Include="ElseConstruction.cs" />
+    <Compile Include="ElseIfConstruction.cs" />
     <Compile Include="ForeachConstruction.cs" />
     <Compile Include="MacroFileCompositeView.cs" />
     <Compile Include="IfConstruction.cs" />
@@ -54,6 +56,7 @@
     <Compile Include="Macros.cs" />
     <Compile Include="PagesInfo.cs" />
     <Compile Include="PredefinedMacros.cs" />
+    <Compile Include="SetMacros.cs" />
     <Compile Include="StaticData.cs" />
     <Compile Include="StaticText.cs" />
     <Compile Include="TableOfMacros.cs" />
@@ -69,10 +72,16 @@
     <None Include="App.config" />
     <None Include="jsonFile.json" />
     <None Include="MyMacro1.mv" />
+    <None Include="_macros\config_files\check1.conf" />
+    <None Include="_macros\json_conf\check1.json" />
+    <None Include="_macros\templates\check1\email.mv" />
+    <None Include="_macros\templates\check1\preLoaded.mv" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="configFile.txt" />
     <Content Include="temp.txt" />
+    <Content Include="_macros\exe\run_bat.txt" />
+    <Content Include="_macros\good_output\check1\good_check1.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

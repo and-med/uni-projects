@@ -13,7 +13,15 @@
 		Test1: This should print!
 	#end
 	#if(6 < 5)
-		Test2: This should not print!
+			Talk with me
+	#elseif(4 >1)
+		#foreach($product in $page.Recepient.GetProducts())
+		#if($product.Price > 1000) -Product named $product.Name costs $product.Price #end
+	#end
+	#elseif(3+6 < 2)
+		Pes and horse
+	#else
+		Suchka
 	#end
 	#if("Pavlo" =="Pavlo"  )
 		Test3: This should print!
