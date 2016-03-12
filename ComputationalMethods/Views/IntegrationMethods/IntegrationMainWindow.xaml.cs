@@ -68,7 +68,7 @@ namespace ComputationalMethods.Views.IntegrationMethods
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
         }
 
