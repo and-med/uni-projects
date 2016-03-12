@@ -1,0 +1,13 @@
+﻿<Window x:Class="ComputationalMethods.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="150" Width="150">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" Margin="10" Click="IterationMethods_Click">Iteration Methods</Button>
+        <Button Grid.Row="1" Margin="10" Click="Integration_Click">Integration</Button>
+    </Grid>
+</Window>
