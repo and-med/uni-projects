@@ -39,6 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\LeastSquaresMethodSolver.cs" />
+    <Compile Include="Algorithms\LinearSystemSolvers\GaussianSolver.cs" />
+    <Compile Include="Algorithms\LinearSystemSolvers\ILinearSystemSolver.cs" />
     <Compile Include="Approximation\CombinedSecantAndNewtonMethod.cs" />
     <Compile Include="Approximation\DichotomyMethod.cs" />
     <Compile Include="Approximation\IterationsMethod.cs" />
@@ -53,6 +56,14 @@
     <Compile Include="Integration\SimpsonRule.cs" />
     <Compile Include="Integration\ThreeEightsRule.cs" />
     <Compile Include="Integration\TrapezodialRule.cs" />
+    <Compile Include="Math\Matrix.cs" />
+    <Compile Include="Math\Vector.cs" />
+    <Compile Include="Models\LeastSquaresDataModel.cs" />
+    <Compile Include="Operators\Factory\ILinearDifferentialSecondOrderOperatorFactory.cs" />
+    <Compile Include="Operators\Factory\IOperatorFactory.cs" />
+    <Compile Include="Operators\Factory\LinearDifferentialSecondOrderOperatorFactory.cs" />
+    <Compile Include="Operators\IOperator.cs" />
+    <Compile Include="Operators\LinearDifferentialSecondOrderOperator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

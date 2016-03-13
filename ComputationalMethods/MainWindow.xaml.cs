@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ComputationalMethods.Views.IntegrationMethods;
 using ComputationalMethods.Views.IterationMethods;
+using ComputationalMethods.Views.LeastSquaresMethod;
 
 namespace ComputationalMethods
 {
@@ -36,6 +37,12 @@ namespace ComputationalMethods
         {
             IntegrationMainWindow window = new IntegrationMainWindow();
             window.Show();
+        }
+
+        private void LeastSquares_Click(object sender, RoutedEventArgs e)
+        {
+            LeastSquaresMethodDisplay windows = new LeastSquaresMethodDisplay();
+            windows.Show();
         }
     }
 }

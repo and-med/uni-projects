@@ -12,7 +12,7 @@ namespace Numerics.Integration
 
         private int n;
 
-        public ChebyshevQuadrature(int initialN)
+        public ChebyshevQuadrature(int initialN = 5)
         {
             n = initialN;
         }
