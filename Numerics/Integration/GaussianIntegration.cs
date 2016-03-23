@@ -13,7 +13,7 @@ namespace Numerics.Integration
 
         private int n;
 
-        public GaussianIntegration(int initialN)
+        public GaussianIntegration(int initialN = 5)
         {
             n = initialN;
         }

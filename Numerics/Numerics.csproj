@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\LeastSquaresMethodSolver.cs" />
+    <Compile Include="Algorithms\LinearLeastSquaresMethodSolver.cs" />
     <Compile Include="Algorithms\LinearSystemSolvers\GaussianSolver.cs" />
     <Compile Include="Algorithms\LinearSystemSolvers\ILinearSystemSolver.cs" />
     <Compile Include="Approximation\CombinedSecantAndNewtonMethod.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Math\Matrix.cs" />
     <Compile Include="Math\Vector.cs" />
     <Compile Include="Models\LeastSquaresDataModel.cs" />
+    <Compile Include="Models\LinearLeastSquaresDataModel.cs" />
     <Compile Include="Operators\Factory\ILinearDifferentialSecondOrderOperatorFactory.cs" />
     <Compile Include="Operators\Factory\IOperatorFactory.cs" />
     <Compile Include="Operators\Factory\LinearDifferentialSecondOrderOperatorFactory.cs" />

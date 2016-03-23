@@ -44,5 +44,11 @@ namespace ComputationalMethods
             LeastSquaresMethodDisplay windows = new LeastSquaresMethodDisplay();
             windows.Show();
         }
+
+        private void LinearLeastSquares_Click(object sender, RoutedEventArgs e)
+        {
+            LinearLeastSquaresMethod window = new LinearLeastSquaresMethod();
+            window.Show();
+        }
     }
 }

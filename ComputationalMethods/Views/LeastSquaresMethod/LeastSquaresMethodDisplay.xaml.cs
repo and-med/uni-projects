@@ -17,6 +17,7 @@ using Numerics.Operators.Factory;
 using Numerics.Structures;
 using Numerics.Algorithms;
 using Numerics.Algorithms.LinearSystemSolvers;
+using System.IO;
 
 namespace ComputationalMethods.Views.LeastSquaresMethod
 {
@@ -62,7 +63,7 @@ namespace ComputationalMethods.Views.LeastSquaresMethod
                 BasisWronskian = Wronskian,
                 Epselon = eps,
                 F = F,
-                Integrator = new ChebyshevQuadrature(),
+                Integrator = new GaussianIntegration(),
                 IntervalEnd = b,
                 IntervalStart = a                
             };
@@ -73,9 +74,11 @@ namespace ComputationalMethods.Views.LeastSquaresMethod
         {
             try
             {
+                result.Content = "";
                 ParseInput();
                 Initialize();
                 leastSquaresMethod.BuildMatrix();
+                OutputMatrix();
                 solver.A = leastSquaresMethod.C;
                 solver.B = leastSquaresMethod.B;
                 solver.Solve();
@@ -85,6 +88,26 @@ namespace ComputationalMethods.Views.LeastSquaresMethod
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void OutputMatrix()
+        {
+            using(var writer = new StreamWriter("..\\..\\Content\\Output1.txt"))
+            {
+                for(int i = 0; i < 3; ++i)
+                {
+                    for (int j = 0; j < 3; ++j)
+                    {
+                        writer.Write(leastSquaresMethod.C[i, j]);
+                        writer.Write(" ");
+                    }
+                    writer.WriteLine();
+                }
+                for(int i = 0; i < 3; ++i)
+                {
+                    writer.WriteLine(leastSquaresMethod.B[i]);
+                }
             }
         }
 
