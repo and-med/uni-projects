@@ -23,30 +23,31 @@ namespace DirichletTask.Core.Series
 
         public override double Calculate(int n, double x)
         {
-            //EmptyCache();
-
             double sum = 0;
             double result = 0;
-            double sigma = _parameters.GetValue("sigma");
+            double alpha = _parameters.GetValue("alpha");
+            double beta = _parameters.GetValue("beta");
+            double hama = alpha + (beta / 2.0);
+            double omega = alpha + beta;
 
-            for(int k = 0; k <= n - 1; ++k)
+            for (int k = 0; k <= n - 1; ++k)
             {
                 sum += _param.Calculate(n - 1, k) * _gSeries.Calculate(k, x); 
             }
 
             if (n == 0)
             {
-                result = (Math.Exp(-Math.Sqrt(sigma) * Math.Abs(x))) / (4.0 * Math.PI * Math.Abs(x));
+                result = Math.Sqrt(omega) * (Math.Exp(-Math.Sqrt(hama) * Math.Abs(x))) / (4.0 * Math.PI * Math.Abs(x));
             }
             else
             {
                 if (n == 1)
                 {
-                    result = -(sigma / (double)n) * sum;
+                    result = -(1 / (double)n) * sum;
                 }
                 else
                 {
-                    result = (1.0 - 1.0 / (double)n) * Calculate(n - 1, x) - (sigma / (double)n) * sum;
+                    result = (1.0 - 1.0 / (double)n) * Calculate(n - 1, x) - (1 / (double)n) * sum;
                 }
             }
 

@@ -13,17 +13,19 @@ namespace DirichletTask.Core.Series
         }
 
 
-        // (-1)^k*sigma^k*n!
+        // (-1)^k*omega^k*n!
         // -----------------
         //   (k!)^2*(n-k)!
         public double Calculate(int n, int x)
         {
-            double sigma = _parameters.GetValue("sigma");
+            double alpha = _parameters.GetValue("alpha");
+            double beta = _parameters.GetValue("beta");
+            double omega = alpha + beta;
 
             double product = 1;
             for (int i = 1; i <= x; ++i)
             {
-                product *= (sigma * (n - x + i)) / (i * i);
+                product *= (omega * (n - x + i)) / (i * i);
             }
 
             int coef = ((-2) * (x % 2) + 1);

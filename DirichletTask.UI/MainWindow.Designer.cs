@@ -44,6 +44,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtDx = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.txtAlpha = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtBeta = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnTabulateToFile = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +58,7 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pictureBox1.Location = new System.Drawing.Point(0, 86);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(984, 475);
+            this.pictureBox1.Size = new System.Drawing.Size(1064, 475);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
@@ -180,11 +185,58 @@
             this.label7.TabIndex = 14;
             this.label7.Text = "dx:";
             // 
+            // txtAlpha
+            // 
+            this.txtAlpha.Location = new System.Drawing.Point(609, 43);
+            this.txtAlpha.Name = "txtAlpha";
+            this.txtAlpha.Size = new System.Drawing.Size(100, 20);
+            this.txtAlpha.TabIndex = 17;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(568, 46);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(36, 13);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "alpha:";
+            // 
+            // txtBeta
+            // 
+            this.txtBeta.Location = new System.Drawing.Point(791, 12);
+            this.txtBeta.Name = "txtBeta";
+            this.txtBeta.Size = new System.Drawing.Size(100, 20);
+            this.txtBeta.TabIndex = 19;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(750, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(31, 13);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "beta:";
+            // 
+            // btnTabulateToFile
+            // 
+            this.btnTabulateToFile.Location = new System.Drawing.Point(977, 25);
+            this.btnTabulateToFile.Name = "btnTabulateToFile";
+            this.btnTabulateToFile.Size = new System.Drawing.Size(75, 38);
+            this.btnTabulateToFile.TabIndex = 20;
+            this.btnTabulateToFile.Text = "Tabulate";
+            this.btnTabulateToFile.UseVisualStyleBackColor = true;
+            this.btnTabulateToFile.Click += new System.EventHandler(this.btnTabulateToFile_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 561);
+            this.ClientSize = new System.Drawing.Size(1064, 561);
+            this.Controls.Add(this.btnTabulateToFile);
+            this.Controls.Add(this.txtBeta);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtAlpha);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtDx);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtY2);
@@ -227,6 +279,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtDx;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtAlpha;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtBeta;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnTabulateToFile;
     }
 }
 

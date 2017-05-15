@@ -50,6 +50,8 @@ namespace DirichletTask.UI
             _viewModel.Y1 = txtY1.Text;
             _viewModel.Y2 = txtY2.Text;
             _viewModel.Dx = txtDx.Text;
+            _viewModel.Alpha = txtAlpha.Text;
+            _viewModel.Beta = txtBeta.Text;
         }
 
         private void CopyViewModelValuesToText()
@@ -61,6 +63,8 @@ namespace DirichletTask.UI
             txtY1.Text = _viewModel.Y1;
             txtY2.Text = _viewModel.Y2;
             txtDx.Text = _viewModel.Dx;
+            txtAlpha.Text = _viewModel.Alpha;
+            txtBeta.Text = _viewModel.Beta;
         }
 
         private void PutLabels()
@@ -104,6 +108,12 @@ namespace DirichletTask.UI
                 pictureBox1.Controls.Add(label2);
                 label2.BringToFront();
             }
+        }
+
+        private void btnTabulateToFile_Click(object sender, System.EventArgs e)
+        {
+            CopyTextValuesToViewModel();
+            _viewModel.TabulateCommand();
         }
     }
 }
