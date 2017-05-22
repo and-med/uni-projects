@@ -1,8 +1,12 @@
 ﻿using DirichletTask.Core.Abstraction.Cache;
+using DirichletTask.Core.Abstraction.Functions;
+using DirichletTask.Core.Abstraction.Series;
+using DirichletTask.Core.Functions;
 using DirichletTask.Core.Parameters;
 using DirichletTask.Core.Series;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -15,6 +19,7 @@ namespace DirichletTask.UI.ViewModels
         private string _number = "1";
         private string _kappa = "1";
 
+        private string t = "1";
         private string x1 = "0";
         private string _alpha = "0.5";
         private string _beta = "1";
@@ -26,6 +31,9 @@ namespace DirichletTask.UI.ViewModels
         private double height;
 
         ICachedSingleSeriesCalculator<int, double, double> _eSeries;
+        ISingleValuedSeriesCalculator<int, double, double> _eTildaSeries;
+        IFunction<double, double, double> _eSumSeries;
+        IFunction<double, double, double> _eAnalytical;
 
         #region Binding Properties
 
@@ -98,6 +106,18 @@ namespace DirichletTask.UI.ViewModels
             set
             {
                 x2 = value;
+            }
+        }
+
+        public string T
+        {
+            get
+            {
+                return t;
+            }
+            set
+            {
+                t = value;
             }
         }
 
@@ -212,7 +232,50 @@ namespace DirichletTask.UI.ViewModels
                 }
             }
         }
-        
+
+        public void CreateFromConfigs2()
+        {
+            var parameters = new DictionaryParametersProvider(new Dictionary<string, double>
+            {
+                { "alpha", double.Parse(Alpha) },
+                { "beta", double.Parse(Beta) },
+                { "omega", double.Parse(Alpha + Beta) }
+            });
+            var eSeriesParam = new ESeriesParam(parameters);
+            var gSeries = new GTildaSeries(parameters);
+            _eTildaSeries = new ETildaSeries(parameters, gSeries, eSeriesParam);
+
+            _eSumSeries = new EFundSolutionNumerical(_eTildaSeries, new LaguerreFunction(), parameters)
+            {
+                N = int.Parse(Number)
+            };
+            _eAnalytical = new EFundSolution(parameters);
+        }
+        public void DrawCommand2(Graphics g)
+        {
+            CreateFromConfigs2();
+
+            var x1 = double.Parse(X1);
+            var x2 = double.Parse(X2);
+            var dx = double.Parse(Dx);
+            var t = double.Parse(T);
+
+            for (double x = x1; x <= x2; x += dx)
+            {
+                try
+                {
+                    var point = GetPointAt(x, _eSumSeries.Calculate(x, t));
+                    g.FillEllipse(new SolidBrush(Color.Black), new Rectangle(point.X - 2, point.Y - 2, 4, 4));
+                    point = GetPointAt(x, _eAnalytical.Calculate(x, t));
+                    g.FillEllipse(new SolidBrush(Color.Red), new Rectangle(point.X - 2, point.Y - 2, 4, 4));
+                }
+                catch (Exception ex)
+                {
+                    Trace.WriteLine($"Drawing point failed: {ex.Message}");
+                }
+            }
+        }
+
         public void TabulateCommand()
         {
             var parameters = new DictionaryParametersProvider(new Dictionary<string, double>
@@ -220,7 +283,7 @@ namespace DirichletTask.UI.ViewModels
                 { "alpha", double.Parse(Alpha) },
                 { "beta", double.Parse(Beta) }
             });
-            int[] numbsToUse = { 0, 1, 2, 3, 4, 5, 6 };
+            int[] numbsToUse = { 0, 1, 2, 3, 4, 5, 6, 7 };
 
             var eSeriesParam = new ESeriesParam[numbsToUse.Length];
             var gSeries = new GSeriesCalculator[numbsToUse.Length];
@@ -233,30 +296,6 @@ namespace DirichletTask.UI.ViewModels
 
                 eSeries[i].SetCacheSize(i + 1);
             }
-            //var e0SeriesParam = new ESeriesParam(parameters);
-            //var g0Series = new GSeriesCalculator(parameters);
-            //var e0series = new ESeriesCalculator(g0Series, e0SeriesParam, parameters);
-            //e0series.SetCacheSize(1);
-            //var e1SeriesParam = new ESeriesParam(parameters);
-            //var g1Series = new GSeriesCalculator(parameters);
-            //var e1series = new ESeriesCalculator(g1Series, e1SeriesParam, parameters);
-            //e1series.SetCacheSize(2);
-            //var e5SeriesParam = new ESeriesParam(parameters);
-            //var g5Series = new GSeriesCalculator(parameters);
-            //var e5series = new ESeriesCalculator(g5Series, e5SeriesParam, parameters);
-            //e5series.SetCacheSize(6);
-            //var e6SeriesParam = new ESeriesParam(parameters);
-            //var g6Series = new GSeriesCalculator(parameters);
-            //var e6series = new ESeriesCalculator(g6Series, e6SeriesParam, parameters);
-            //e6series.SetCacheSize(7);
-            //var e7SeriesParam = new ESeriesParam(parameters);
-            //var g7Series = new GSeriesCalculator(parameters);
-            //var e7series = new ESeriesCalculator(g7Series, e7SeriesParam, parameters);
-            //e7series.SetCacheSize(8);
-            //var e10SeriesParam = new ESeriesParam(parameters);
-            //var g10Series = new GSeriesCalculator(parameters);
-            //var e10series = new ESeriesCalculator(g10Series, e10SeriesParam, parameters);
-            //e10series.SetCacheSize(11);
 
             var x1 = double.Parse(X1);
             var x2 = double.Parse(X2);

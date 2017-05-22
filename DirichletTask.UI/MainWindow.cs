@@ -29,7 +29,7 @@ namespace DirichletTask.UI
                 _viewModel.Height = pictureBox1.Height;
                 _viewModel.Width = pictureBox1.Width;
 
-                _viewModel.DrawCommand(e.Graphics);
+                _viewModel.DrawCommand2(e.Graphics);
             }
         }
 
@@ -52,6 +52,7 @@ namespace DirichletTask.UI
             _viewModel.Dx = txtDx.Text;
             _viewModel.Alpha = txtAlpha.Text;
             _viewModel.Beta = txtBeta.Text;
+            _viewModel.T = txtT.Text;
         }
 
         private void CopyViewModelValuesToText()
@@ -65,6 +66,7 @@ namespace DirichletTask.UI
             txtDx.Text = _viewModel.Dx;
             txtAlpha.Text = _viewModel.Alpha;
             txtBeta.Text = _viewModel.Beta;
+            txtT.Text = _viewModel.T;
         }
 
         private void PutLabels()
@@ -114,6 +116,17 @@ namespace DirichletTask.UI
         {
             CopyTextValuesToViewModel();
             _viewModel.TabulateCommand();
+        }
+
+        private void MainWindow_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (int)Keys.Enter)
+            {
+                _canPaint = true;
+                CopyTextValuesToViewModel();
+                PutLabels();
+                pictureBox1.Refresh();
+            }
         }
     }
 }

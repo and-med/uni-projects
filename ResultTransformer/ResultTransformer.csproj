@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{033884A6-5477-41B5-9B6A-AB0D2B213B97}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{CB645D77-284B-4FAE-9C5D-32D7789653CF}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DirichletTask.Core</RootNamespace>
-    <AssemblyName>DirichletTask.Core</AssemblyName>
+    <RootNamespace>ResultTransformer</RootNamespace>
+    <AssemblyName>ResultTransformer</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,23 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cache\ArrCachedSingleSeriesCalculator.cs" />
-    <Compile Include="Functions\EFundSolution.cs" />
-    <Compile Include="Functions\EFundSolutionNumerical.cs" />
-    <Compile Include="Functions\LaguerreFunction.cs" />
-    <Compile Include="Parameters\DictionaryParametersProvider.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Series\ESeriesCalculator.cs" />
-    <Compile Include="Series\ETildaSeries.cs" />
-    <Compile Include="Series\GSeriesCalculator.cs" />
-    <Compile Include="Series\ESeriesParam.cs" />
-    <Compile Include="Series\GTildaSeries.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DirichletTask.Core.Abstraction\DirichletTask.Core.Abstraction.csproj">
-      <Project>{9eebe74f-e7a0-4424-8ed6-f6d89c3b3dfe}</Project>
-      <Name>DirichletTask.Core.Abstraction</Name>
-    </ProjectReference>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="input.txt" />
+    <Content Include="output.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cache\ICachedSingleSeriesCalculator.cs" />
+    <Compile Include="Functions\IFunction.cs" />
     <Compile Include="Parameters\IReadOnlyParameterProvider.cs" />
     <Compile Include="Series\ISingleValuedSeriesCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
