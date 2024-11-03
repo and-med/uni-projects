@@ -1,0 +1,1 @@
+start "D:\Projects\C#\MacroEngine\FileParsing\bin\Debug\FileParsing.exe D:\_macros\json_conf\check1.json"

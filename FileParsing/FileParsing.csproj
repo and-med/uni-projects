@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B631CC49-8000-40A3-8424-6C9B2EAAC4DA}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FileParsing</RootNamespace>
+    <AssemblyName>FileParsing</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.JScript" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CompositeView\BreakConstruction.cs" />
+    <Compile Include="Exceptions\BreakException.cs" />
+    <Compile Include="CompositeView\visitor\BuildCompositeVisitor.cs" />
+    <Compile Include="CompositeView\CompositeConstruction.cs" />
+    <Compile Include="Utilites\Condition.cs" />
+    <Compile Include="Base\Context.cs" />
+    <Compile Include="CompositeView\ElseConstruction.cs" />
+    <Compile Include="CompositeView\ElseIfConstruction.cs" />
+    <Compile Include="CompositeView\ForeachConstruction.cs" />
+    <Compile Include="CompositeView\MainCompositeView.cs" />
+    <Compile Include="CompositeView\IfConstruction.cs" />
+    <Compile Include="CompositeView\IncludeConstruction.cs" />
+    <Compile Include="Base\MacroEngine.cs" />
+    <Compile Include="Base\Macros.cs" />
+    <Compile Include="JsonData\PagesInfo.cs" />
+    <Compile Include="JsonData\Params.cs" />
+    <Compile Include="CompositeView\ParseConstruction.cs" />
+    <Compile Include="Utilites\ParseUtilites.cs" />
+    <Compile Include="Base\PredefinedMacros.cs" />
+    <Compile Include="CompositeView\SetMacros.cs" />
+    <Compile Include="Utilites\StaticData.cs" />
+    <Compile Include="CompositeView\StaticText.cs" />
+    <Compile Include="Base\TableOfMacros.cs" />
+    <Compile Include="CompositeView\TextUnit.cs" />
+    <Compile Include="JsonData\Page.cs" />
+    <Compile Include="JsonData\Product.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="JsonData\User.cs" />
+    <Compile Include="CompositeView\UserDefinedMacrosConstruction.cs" />
+    <Compile Include="Base\UserDefinedMacross.cs" />
+    <Compile Include="CompositeView\visitor\Visitor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="MyMacro.mv" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

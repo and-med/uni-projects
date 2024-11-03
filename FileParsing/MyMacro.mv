@@ -1,0 +1,8 @@
+﻿#macro(greet $name)
+	Hello $name!
+#end
+#elseif(6 > 5)
+#if(6 > 5)
+In IfConstruction...
+#set($username = "Andriy")
+#greet($username)
