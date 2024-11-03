@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Bid" Collapsed="true">
+    <Position X="15.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAACAAAAAAAAAgAA=</HashCode>
+      <FileName>Bid.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Country" Collapsed="true">
+    <Position X="17.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Country.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Good" Collapsed="true">
+    <Position X="1.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAAIAAgAQEAAAAUgAAAAAAQAAAAAQA=</HashCode>
+      <FileName>Good.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Auction" Collapsed="true">
+    <Position X="0.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Good.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FixedPrice" Collapsed="true">
+    <Position X="2.75" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Good.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BaseCategory" Collapsed="true">
+    <Position X="9.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAQAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>GoodManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CompositeCatalog" Collapsed="true">
+    <Position X="8.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAGAAAAEAAAAAAAQAQABAAAAAAAAAAAACAQ=</HashCode>
+      <FileName>GoodManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CompositeCategory" Collapsed="true">
+    <Position X="10.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAACAAQABAAAAAAAAIAAACAA=</HashCode>
+      <FileName>GoodManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GoodManager" Collapsed="true">
+    <Position X="19.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAAEAAAQAAAAAAAAAAAACAAABAAA=</HashCode>
+      <FileName>GoodManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Command" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HistoryLoader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserCommand" Collapsed="true">
+    <Position X="9.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HistoryLoader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdminCommand" Collapsed="true">
+    <Position X="13.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HistoryLoader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CreateUser" Collapsed="true">
+    <Position X="8.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HistoryLoader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ChangeDescription" Collapsed="true">
+    <Position X="11" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>HistoryLoader.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InputStrategy" Collapsed="true">
+    <Position X="3" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>InputStrategy.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainMenuInput" Collapsed="true">
+    <Position X="0.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAQAAABAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>InputStrategy.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogInput" Collapsed="true">
+    <Position X="3" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAABAAAQAAAAAQEAAAAAAAAAgAAAAg=</HashCode>
+      <FileName>InputStrategy.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserLoggedInput" Collapsed="true">
+    <Position X="5.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAQAAAAgAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>InputStrategy.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Rate" Collapsed="true">
+    <Position X="15.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAIAEAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Rate.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shop">
+    <Position X="17.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAgAAAAAAAAIAAAAAAAQAABCAAAAEAAAAAABAAYA=</HashCode>
+      <FileName>Shop.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BaseState" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAACAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAEAAA=</HashCode>
+      <FileName>State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainMenuState" Collapsed="true">
+    <Position X="0.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EIAAAAGAAAAABAAAAAAAAAAAAAAAAAIAAAAAAAAEAAA=</HashCode>
+      <FileName>State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogInState" Collapsed="true">
+    <Position X="3" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIABAACAAAAABAAAAAAAAAAAAAAAAIIAAAAAAAAEAAA=</HashCode>
+      <FileName>State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserLoggedState" Collapsed="true">
+    <Position X="5.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIABAACAAAAEAAAAAAAAAAAAAAAAABIAAAAAAAAEAAA=</HashCode>
+      <FileName>State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="State" Collapsed="true">
+    <Position X="19.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QIAAAACAAAAAAAAAAAAAAAAAAAAAAAIEAAAABAAEAAA=</HashCode>
+      <FileName>State.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Time" Collapsed="true">
+    <Position X="15.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAAAIAAAACAAAAAEAAIRA=</HashCode>
+      <FileName>Time.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="User" Collapsed="true">
+    <Position X="9.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAQAAAAIAAAAAAAAAAAAAAEAAACAAAAAgAAEAA=</HashCode>
+      <FileName>User.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SimpleUser" Collapsed="true">
+    <Position X="8.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAgAAAEgAAAAEAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>User.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Admin" Collapsed="true">
+    <Position X="10.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>User.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserManager" Collapsed="true">
+    <Position X="17.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAABAAAAIEAAAAAAAABAAg=</HashCode>
+      <FileName>UserManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="View" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAABAABAAAAAAAAAA=</HashCode>
+      <FileName>View.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainMenuView" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAABAAAAAAAAAA=</HashCode>
+      <FileName>View.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogInView" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAABAAAAAAAAAA=</HashCode>
+      <FileName>View.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserLoggedView" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAABAAAAAAAAAA=</HashCode>
+      <FileName>View.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ViewManager" Collapsed="true">
+    <Position X="19.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEGAAAAAAAAAAAEAAAAABAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>ViewManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
